@@ -1,6 +1,7 @@
 @light-blue: #015bb6;
 @dark-blue: #04327d;
 
+
 @font-face {
   font-family: "OpenSans Regular";
   src: url("../fonts/Regular/OpenSans-Regular.eot");
@@ -114,6 +115,8 @@ h4 {
 
     & .contract-icon {
       width: 100%;
+      margin: 15px auto;
+      max-width: 198px;
       display: block;
       border-radius: 5px;
       box-shadow: -1px 1px 0px rgba(0, 0, 0, 0.3);
@@ -176,6 +179,14 @@ h4 {
 
 }
 
+.recommendations.risqued li {
+  width: 30%;
+
+  .danger-refus {
+    color: #e74c3c;
+  }
+}
+
 
 
 
@@ -217,6 +228,15 @@ h4 {
       color: #FFF;
       font-weight: bold;
       text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      position: relative;
+
+      .calendar-bg {
+        position: absolute;
+        opacity: 0.5;
+        top: -20px;
+        right: -15px;
+      }
     }
 
     &.expected::after {
