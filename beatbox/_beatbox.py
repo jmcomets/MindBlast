@@ -6,7 +6,6 @@ __credits__ = "Mad shouts to the sforce possie"
 __copyright__ = "(C) 2006 Simon Fell. GNU GPL 2."
 
 import httplib
-import hashlib
 import logging
 import socket
 from urlparse import urlparse
