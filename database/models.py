@@ -111,7 +111,7 @@ class Feedback(Document):
 class Reunion(Document):
     date = fields.DateTimeField(required=True)
     client = fields.ReferenceField(Client, required=True)
-    feedbacks = fields.ListField(fields.ReferenceField(Product))
+    feedbacks = fields.ListField(fields.ReferenceField(Feedback))
 
 class Challenge(Document):
     title = fields.StringField()
