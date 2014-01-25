@@ -1,20 +1,74 @@
-.page {
-}
+.frames {
+    padding: 0;
+    & > li {
+        /* Deactivate selection */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
 
-.main-frame {
-  min-height: 320px;
-}
 
-.frame-list {
-  min-height: 200px;
+        /* Style change transition */
+        -webkit-transition:all ease-in-out 0.2s;
+        -moz-transition:all ease-in-out 0.2s;
+        -ms-transition:all ease-in-out 0.2s;
+        -o-transition:all ease-in-out 0.2s;
+        transition:all ease-in-out 0.2s;
 
-  .frame {
-    font-size: 20px;
-    padding: 5px;
-  }
-}
+        opacity: 0.5;
 
-.frame {
-  border: 1px solid #e5e5e5;
-  /*background-color: #333;*/
+        width: 100%;
+        padding: 20px 0;
+        border: 1px solid #D6D6D6;
+
+        text-align: center;
+        padding: 14px;
+
+        & .nom {
+            margin-top: 20px;
+            font-size: 30px;
+        }
+        & .offre-com {
+            font-size: 20px;
+            font-weight: normal;
+        }
+        & .challenge {
+            display: none;
+        }
+
+        /* Détails, cachés par défaut */
+        & .details {
+            display: none;
+        }
+
+
+        & .description {
+            text-align: left;
+        }
+
+        & .offres-commerciales {
+            text-align: left;
+        }
+    }
+
+    & > li.selected {
+        opacity: 1;
+
+        background: #3498db;
+        color: #FFF;
+        text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.3);
+        color: #FFF;
+
+        & .offre-com {
+            color: #FFF;
+        }
+
+
+        & .details {
+            display: block;
+        }
+    }
+
 }

@@ -1,10 +1,9 @@
 (function($) {
   $(function() {
     $('ul.frames li').on('tap', function() {
-      var self = $(this), mainFrame = $('#main-frame');
-      mainFrame.html(self.html());
-      self.siblings().removeClass('selected');
-      self.addClass('selected');
+      $this = $(this);
+      $this.siblings().removeClass('selected');
+      $this.addClass('selected');
     });
 
     var removeFrame = function(self) {
@@ -12,17 +11,26 @@
       $(self).remove();
     };
 
-    $('#controls button').on('tap', function() {
+    $('.controls button').on('tap', function() {
       $(this).parents().first().hide();
       // do some api call
       //$.post('/api/meeting/negative', data);
     });
 
-    $('#main-frame').on('swipeleft', function() {
+    $('ul.frames li').on('swipeleft', function() {
+      if (!$(this).hasClass('selected')) {
+        return;
+      }
+
       removeFrame(this);
       $('#controls').show();
     }).on('swiperight', function() {
+      if (!$(this).hasClass('selected')) {
+        return;
+      }
+
       removeFrame(this);
     });
+
   });
 }) (jQuery);

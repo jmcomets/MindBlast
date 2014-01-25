@@ -100,88 +100,89 @@ h4 {
 .recommendations {
   list-style: none;
   margin: none;
+}
 
-  li {
-    display: inline-block;
+.recommendation {
+  display: inline-block;
+  padding: 0;
+  width: 45%;
+  margin: 5px;
+
+  &.challenge::after {
+    content: url(../img/star.png);
+    opacity: 0.3;
+    width: 12px;
+  }
+
+  & .contract-icon {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 200px;
+    display: block;
+    border-radius: 5px;
+    box-shadow: -1px 1px 0px rgba(0, 0, 0, 0.3);
+    border: 1px solid #EBEBEB;
+  }
+
+  & .icon-wrapper {
     padding: 0;
-    width: 45%;
-    margin: 5px;
+  }
 
-    &.challenge::after {
-      content: url(../img/star.png);
-      opacity: 0.3;
-      width: 12px;
-    }
+  & .nom {
+    font-size: 22px;
+    margin: 5px 0;
+    vertical-align: text-top;
+  }
 
-    & .contract-icon {
-      width: 100%;
-      margin: 0 auto;
-      max-width: 200px;
-      display: block;
-      border-radius: 5px;
-      box-shadow: -1px 1px 0px rgba(0, 0, 0, 0.3);
-      border: 1px solid #EBEBEB;
-    }
+  & .offre-com {
+    font-weight: bold;
+    color: #e67e22;
+    font-size: 12px;
+  }
 
-    & .icon-wrapper {
-      padding: 0;
-    }
+  & .inactive {
+    color: #bbb;
+  }
 
-    & .nom {
-      font-size: 22px;
-      margin: 5px 0;
-      vertical-align: text-top;
-    }
+  & .inactive .challenge-icon{
+    color: #bbb !important;
+  }
 
-    & .offre-com {
-      font-weight: bold;
-      color: #e67e22;
+
+  & .challenge {
+    margin-top: 5px;
+
+    .challenge-name {
       font-size: 12px;
+      font-weight: bold;
+      display: block;
     }
 
-    & .inactive {
-      color: #bbb;
+    & .challenge-icon {
+      float: left;
+      font-size: 26px;
+      margin: 5px;
+      color: @light-blue;
     }
 
-    & .inactive .challenge-icon{
-      color: #bbb !important;
-    }
 
+    @progress-height: 8px;
+    .progress-bar {
+      width: 50%;
+      display: block;
+      background: #DADADA;
+      height: @progress-height;
 
-    & .challenge {
-      margin-top: 5px;
-
-      .challenge-name {
-        font-size: 12px;
-        font-weight: bold;
+      .completed {
         display: block;
-      }
-
-      & .challenge-icon {
-        float: left;
-        font-size: 26px;
-        margin: 5px;
-        color: @light-blue;
-      }
-
-
-      @progress-height: 8px;
-      .progress-bar {
-        width: 50%;
-        display: block;
-        background: #DADADA;
+        background: @light-blue;
         height: @progress-height;
-
-        .completed {
-          display: block;
-          background: @light-blue;
-          height: @progress-height;
-        }
       }
     }
   }
-
 }
+
+
 
 .recommendations.risqued li {
   width: 30%;
