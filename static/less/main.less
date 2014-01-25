@@ -98,37 +98,80 @@ h4 {
 
 .recommendations {
   list-style: none;
+  margin: none;
 
   li {
     display: inline-block;
-    padding: 10px;
-    width: 25%;
+    padding: 0;
+    width: 45%;
 
     &.challenge::after {
       content: url(../img/star.png);
       opacity: 0.3;
       width: 12px;
     }
-  }
 
-}
+    & .contract-icon {
+      width: 100%;
+      display: block;
+    }
+
+    & .nom {
+      font-size: 23px;
+      margin: 0;
+      vertical-align: text-top;
+    }
+
+    & .offre-com {
+      font-weight: bold;
+      color: #e67e22;
+      font-size: 12px;
+    }
+
+    & .inactive {
+      color: #bbb;
+    }
+
+    & .inactive .challenge-icon{
+      color: #bbb !important;
+    }
 
 
-.recommendations {
-  list-style: none;
+    & .challenge {
+      margin-top: 5px;
 
-  li {
-    display: inline-block;
-    padding: 10px;
-    width: 25%;
+      .challenge-name {
+        font-size: 12px;
+        font-weight: bold;
+        display: block;
+      }
 
-    &.challenge::after {
-      content: url(../img/star.png);
-      opacity: 0.3;
-      width: 12px;
+      & .challenge-icon {
+        float: left;
+        font-size: 26px;
+        margin: 5px;
+        color: @light-blue;
+      }
+
+
+      @progress-height: 8px;
+      .progress-bar {
+        width: 50%;
+        display: block;
+        background: #DADADA;
+        height: @progress-height;
+
+        .completed {
+          display: block;
+          background: @light-blue;
+          height: @progress-height;
+        }
+      }
     }
   }
+
 }
+
 
 
 
