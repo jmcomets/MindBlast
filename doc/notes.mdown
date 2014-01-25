@@ -1,0 +1,24 @@
+# Proposer des informations en se basant sur les notes écrites par le commercial.
+
+## Diagnostique / Client
+
+Données personelles
+Professionelles / Civiles
+Situation matrimoniale, enfants, revenus, propriétaire, voiture, etc.
+
+## Proposition / Contrats
+
+Contrat habitation, pour assurer une voiture, ... plusieurs types de produits
+Dans chaque contrat, possibilité d'options, ...
+
+=> Proposer les contrats éventuellements appliquables
+=> Proposer des informations supplémentaires au fur et à mesure (en se basant sur la base de connaissances, sur d'autres notes, etc.)
+=> Récompenser les commerciaux qui marquent des notes utiles
+
+## Tarifs
+
+Négociations de tarifs, Promotions commerciales (en cours, à venir)
+
+##1 Multi-produits
+
+Système de recommendations de "bundle" d'assurance basé sur les notes prises par le comercial ou d'autres commerciaux et le profil du client (ainsi que de contrats/opportunités ... ?)
