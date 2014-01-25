@@ -1,11 +1,27 @@
 @light-blue: #015bb6;
 @dark-blue: #04327d;
 
+@font-face {
+  font-family: "OpenSans Regular";
+  src: url("../fonts/Regular/OpenSans-Regular.eot");
+  src: local("☺"),
+    url("../fonts/Regular/OpenSans-Regular.woff") format("woff"),
+    url("../fonts/Regular/OpenSans-Regular.otf") format("opentype"),
+    url("../fonts/Regular/OpenSans-Regular.svg") format("svg");
+}
+
+body {
+  font-family: "OpenSans Regular";
+}
+
+h4 {
+  text-indent: 5px;
+}
+
 .search-bar {
   background-color: @light-blue;
   color: #fff;
-  padding:5px;
-  height: 31px;
+  padding: 10px 15px;
   .fa {
     font-size: 20px;
     color: #fff;
@@ -14,17 +30,19 @@
   .search-input {
     float: right;
     border: none;
-    border-radius: 8px;
-    height: 22px;
+    border-radius: 4px;
     width: 100%;
     max-width: 250px;
-    padding: 0 10px;
+    padding: 2px 10px;
     background-color: @dark-blue;
     color: #fff;
   }
 }
 
 .profile {
+  padding: 10px;
+
+
   .profile-head {
     display: block;
     height: 120px;
@@ -43,4 +61,126 @@
 
   .profile-body {
   }
+
+  .top-row {
+    background: #E7E7E7;
+    padding: 5px 0;
+    border: 1px solid #D0D0D0;
+  }
+
+}
+
+
+.insurance-logos {
+  list-style: none;
+  margin: 0;
+
+  li {
+    display: inline-block;
+  }
+
+  li:not(.active) img {
+    opacity: 0.5;
+
+    /* Grayscale filter */
+    filter: url(filters.svg#grayscale);
+    filter: gray;
+    -webkit-filter: grayscale(1);
+  }
+
+  li.active img {
+    filter: none;
+    -webkit-filter: grayscale(0);
+  }
+
+}
+
+
+.recommendations {
+  list-style: none;
+
+  li {
+    display: inline-block;
+    padding: 10px;
+    width: 25%;
+
+    &.challenge::after {
+      content: url(../img/star.png);
+      opacity: 0.3;
+      width: 12px;
+    }
+  }
+
+}
+
+
+.recommendations {
+  list-style: none;
+
+  li {
+    display: inline-block;
+    padding: 10px;
+    width: 25%;
+
+    &.challenge::after {
+      content: url(../img/star.png);
+      opacity: 0.3;
+      width: 12px;
+    }
+  }
+}
+
+
+
+.meetings-wrapper {
+
+
+}
+
+.meetings {
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: 10px 10px;
+    border: 1px solid #E5E5E5;
+
+    .date, .heure, .adresse {
+      font-style: italic;
+    }
+
+    .adresse {
+      font-weight: bold;
+    }
+
+    &::before {
+      display: block;
+      opacity: 0.5;
+      text-shadow: none;
+      font-weight: bold;
+    }
+
+    &.expected {
+      background: #3498db;
+      color: #FFF;
+      font-weight: bold;
+      text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    &.cancelled {
+      opacity: 0.5;
+      background: #E3E3E3;
+    }
+
+    &.expected::before {
+      content: "Prochain rendez-vous";
+    }
+
+
+    &.cancelled::before {
+      content: "Rendez-vous annulé";
+    }
+
+  }
+
 }
