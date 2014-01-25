@@ -105,7 +105,7 @@ class Client(Document, LazySforceDocument):
 
 class Feedback(Document):
     positive = fields.BooleanField(required=True)
-    reason = fields.ListField(fields.StringField(), default=[])
+    reason = fields.StringField()
     client = fields.ReferenceField(Client)
 
 class Reunion(Document):
