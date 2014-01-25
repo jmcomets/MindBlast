@@ -19,49 +19,54 @@
       <div class="profile">
         <div class="profile-head">
           <img class="avatar" src="/static/img/avatar.jpg" />
-          <h2>George Abitbol</h2>
+          <h2>John Doe</h2>
         </div>
         <hr>
         <h4>Informations client</h4>
         <div class="profile-body">
           <div class="row top-row">
 
-            <div class="col-md-4">
-              <img src="/static/img/logo_AXA_baby_off.png" />
-              <img src="/static/img/logo_AXA_car.png" />
-            </div>
+            <ul class="user-attributes pull-left">
+              <li><img src="/static/img/logo_AXA_baby_off.png" /></li>
+              <li><img src="/static/img/logo_AXA_car.png" /></li>
+            </ul>
 
-            <div class="col-md-4 col-md-offset-4">
-              <ul class="insurance-logos">
-                <li class="active"><img src="/static/img/logo_AXA_light.png" /></li>
-                <li><img src="/static/img/logo_AXA_light.png" /></li>
-              </ul>
-            </div>
+            <ul class="insurance-logos pull-right">
+              <li class="active"><img src="/static/img/logo_AXA_light.png" /></li>
+              <li><img src="/static/img/logo_AXA_light.png" /></li>
+            </ul>
           </div>
+
           <br>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-xs-4">
               <dl class="dl-horizontal">
                 <dt>Nom du client</dt>
-                <dd>Rick Astley</dd>
+                <dd>John Doe</dd>
+
                 <dt>Type</dt>
                 <dd>Client</dd>
+
                 <dt>Potentiel</dt>
                 <dd>Moyen/long terme</dd>
+
                 <dt>Valeur client</dt>
-                <dd>WHAAAAT</dd>
+                <dd>-</dd>
               </dl>
             </div>
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-xs-4 col-xs-offset-4">
               <dl class="dl-horizontal">
                 <dt>Numéro client FCA</dt>
                 <dd>C-4242</dd>
+
                 <dt>Numéro abonné</dt>
                 <dd>C-1337</dd>
+
                 <dt>Segment</dt>
                 <dd>52</dd>
+
                 <dt>Qualité perçue</dt>
-                <dd>COOOOL</dd>
+                <dd>3-</dd>
               </dl>
             </div>
           </div>
@@ -76,11 +81,11 @@
         <ul class="recommendations">
 
           <li class="row recommendation">
-            <div class="col-md-2 icon-wrapper">
+            <div class="col-xs-2 icon-wrapper">
               <img src="static/img/logo_axa.png" class="contract-icon">
             </div>
 
-            <div class="col-md-10">
+            <div class="col-xs-10">
 
               <h3 class="nom">
                 Assurance domicile - Niveau 2
@@ -105,11 +110,11 @@
 
 
           <li class="row recommendation">
-            <div class="col-md-2 icon-wrapper">
+            <div class="col-xs-2 icon-wrapper">
               <img src="static/img/logo_axa.png" class="contract-icon">
             </div>
 
-            <div class="col-md-10">
+            <div class="col-xs-10">
 
               <h3 class="nom">
                 Assurance automobile - Niveau 1
@@ -130,11 +135,11 @@
           </li>
 
           <li class="row recommendation">
-            <div class="col-md-2 icon-wrapper">
+            <div class="col-xs-2 icon-wrapper">
               <img src="static/img/logo_axa.png" class="contract-icon">
             </div>
 
-            <div class="col-md-10">
+            <div class="col-xs-10">
 
               <h3 class="nom">
                 Assurance étranger - Niveau 3
@@ -155,11 +160,11 @@
           </li>
 
           <li class="row recommendation">
-            <div class="col-md-2 icon-wrapper">
+            <div class="col-xs-2 icon-wrapper">
               <img src="static/img/logo_axa.png" class="contract-icon">
             </div>
 
-            <div class="col-md-10">
+            <div class="col-xs-10">
 
               <h3 class="nom">
                 Assurance études - Niveau 1
@@ -190,14 +195,34 @@
         <ul class="recommendations risqued">
 
           <li class="row recommendation">
-              <div class="col-md-3">
+              <div class="col-xs-3">
                 <img src="static/img/logo_axa.png" class="contract-icon">
               </div>
 
-              <div class="col-md-9">
+              <div class="col-xs-9">
 
                 <h3 class="nom">
-                  Assurance domicile - Niveau 2
+                  Assurance retraite - Niveau 2
+                </h3>
+
+                <span class="danger-refus">
+                  <span class="glyphicon glyphicon-exclamation-sign exclamation"></span>
+                  Risque de refus: <strong>67%</strong>
+                </span>
+
+
+              </div>
+          </li>
+
+          <li class="row recommendation">
+              <div class="col-xs-3">
+                <img src="static/img/logo_axa.png" class="contract-icon">
+              </div>
+
+              <div class="col-xs-9">
+
+                <h3 class="nom">
+                  Assurance auto - Niveau 3
                 </h3>
 
                 <span class="danger-refus">
@@ -209,7 +234,25 @@
               </div>
           </li>
 
+          <li class="row recommendation">
+              <div class="col-xs-3">
+                <img src="static/img/logo_axa.png" class="contract-icon">
+              </div>
 
+              <div class="col-xs-9">
+
+                <h3 class="nom">
+                  Assurance domicile - Niveau 2
+                </h3>
+
+                <span class="danger-refus">
+                  <span class="glyphicon glyphicon-exclamation-sign exclamation"></span>
+                  Risque de refus: <strong>22%</strong>
+                </span>
+
+
+              </div>
+          </li>
 
 
         </ul>
