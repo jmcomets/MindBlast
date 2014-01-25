@@ -5,8 +5,8 @@ from settings import login, password, token
 app = Flask(__name__)
 
 # login to salesforce
-svc = beatbox.PythonClient()
-svc.login(login, password + token)
+# svc = beatbox.PythonClient()
+# svc.login(login, password + token)
 
 # fix for index page
 @app.route('/')
