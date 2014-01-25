@@ -1,20 +1,41 @@
-.page {
-}
-
 .main-frame {
-  min-height: 320px;
-}
+    width: 100%;
+    position: fixed;
+    padding: 20px 0;
+    border: 1px solid #D6D6D6;
+    background: #3498db;
+    color: #FFF;
+    text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.3);
 
-.frame-list {
-  min-height: 200px;
+    text-align: center;
+    padding: 14px;
 
-  .frame {
-    font-size: 20px;
-    padding: 5px;
-  }
-}
+    & .nom {
+        margin-top: 20px;
+        font-size: 30px;
+    }
+    & .offre-com {
+        font-size: 20px;
+        color: #FFF;
+        font-weight: normal;
+    }
+    & .challenge {
+        display: none;
+    }
 
-.frame {
-  border: 1px solid #e5e5e5;
-  /*background-color: #333;*/
+    /* Détails, cachés par défaut */
+    & .details {
+        display: none;
+    }
+
+
+    & .description {
+        text-align: left;
+    }
+
+    & .offres-commerciales {
+        text-align: left;
+
+    }
+
 }
