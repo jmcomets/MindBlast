@@ -11,24 +11,26 @@
   </head>
 
   <body>
-    <div class="search-bar">
-      <a href="#"><span class="fa fa-bars"></span></a>
-      <input class="search-input" type="text" placeholder="Rechercher des clients">
-    </div>
+    <!--<div class="search-bar">-->
+      <!--<a href="#"><span class="fa fa-bars"></span></a>-->
+      <!--<input class="search-input" type="text" placeholder="Rechercher des clients">-->
+    <!--</div>-->
     <div class="page">
       <div class="profile">
         <div class="profile-head">
-          <img src="/static/logo.gif" />
-          <h2>Rick Astley</h2>
+          <img class="avatar" src="/static/img/avatar.jpg" />
+          <h2>George Abitbol</h2>
         </div>
         <hr>
         <h4>Informations client</h4>
         <div class="profile-body">
           <div class="row top-row">
+
             <div class="col-md-4">
               <img src="/static/img/logo_AXA_baby_off.png" />
               <img src="/static/img/logo_AXA_car.png" />
             </div>
+
             <div class="col-md-4 col-md-offset-4">
               <ul class="insurance-logos">
                 <li class="active"><img src="/static/img/logo_AXA_light.png" /></li>
@@ -75,7 +77,7 @@
 
           <li>
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-2 icon-wrapper">
                 <img src="static/img/logo_axa.png" class="contract-icon">
               </div>
 
@@ -87,7 +89,7 @@
 
                 <span class="offre-com">
                   <span class="glyphicon glyphicon-star"></span>
-                  2 offres commerciales
+                  3 offres commerciales
                 </span>
 
                 <div class="challenge">
@@ -95,7 +97,7 @@
                   <span class="fa fa-trophy challenge-icon"></span>
                   <span class="challenge-name">Challenge italie</span>
                   <div class="progress-bar">
-                      <span class="completed" style="width: 65%;"></span>
+                      <span class="completed" style="width: 90%;"></span>
                   </div>
 
                 </div>
@@ -106,14 +108,14 @@
 
           <li>
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-2 icon-wrapper">
                 <img src="static/img/logo_axa.png" class="contract-icon">
               </div>
 
               <div class="col-md-10">
 
                 <h3 class="nom">
-                  Assurance domicile - Niveau 2
+                  Assurance automobile - Niveau 1
                 </h3>
 
                 <span class="offre-com">
@@ -133,14 +135,14 @@
 
           <li>
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-2 icon-wrapper">
                 <img src="static/img/logo_axa.png" class="contract-icon">
               </div>
 
               <div class="col-md-10">
 
                 <h3 class="nom">
-                  Assurance domicile - Niveau 2
+                  Assurance étranger - Niveau 3
                 </h3>
 
                 <span class="offre-com">
@@ -160,14 +162,14 @@
 
           <li>
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-2 icon-wrapper">
                 <img src="static/img/logo_axa.png" class="contract-icon">
               </div>
 
               <div class="col-md-10">
 
                 <h3 class="nom">
-                  Assurance domicile - Niveau 2
+                  Assurance études - Niveau 1
                 </h3>
 
                 <span class="offre-com inactive">
@@ -197,65 +199,29 @@
 
           <li>
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <img src="static/img/logo_axa.png" class="contract-icon">
               </div>
 
-              <div class="col-md-10">
+              <div class="col-md-9">
 
                 <h3 class="nom">
                   Assurance domicile - Niveau 2
                 </h3>
 
-                <span class="offre-com inactive">
-                  <span class="glyphicon glyphicon-star"></span>
-                  Aucune offre commerciale
+                <span class="danger-refus">
+                  <span class="glyphicon glyphicon-exclamation-sign exclamation"></span>
+                  Risque de refus: <strong>39%</strong>
                 </span>
 
-                <div class="challenge">
 
-                  <span class="fa fa-trophy challenge-icon"></span>
-                  <span class="challenge-name">Challenge assurances vie</span>
-                  <div class="progress-bar">
-                      <span class="completed" style="width: 15%;"></span>
-                  </div>
-
-                </div>
               </div>
             </div>
           </li>
 
 
 
-          <li>
-            <div class="row">
-              <div class="col-md-2">
-                <img src="static/img/logo_axa.png" class="contract-icon">
-              </div>
 
-              <div class="col-md-10">
-
-                <h3 class="nom">
-                  Assurance domicile - Niveau 2
-                </h3>
-
-                <span class="offre-com inactive">
-                  <span class="glyphicon glyphicon-star"></span>
-                  Aucune offre commerciale
-                </span>
-
-                <div class="challenge">
-
-                  <span class="fa fa-trophy challenge-icon"></span>
-                  <span class="challenge-name">Challenge assurances vie</span>
-                  <div class="progress-bar">
-                      <span class="completed" style="width: 15%;"></span>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </li>
         </ul>
 
 
@@ -268,6 +234,8 @@
           <li class="expected">
             Le <span class="date">27 Janvier 2014</span>, à <span class="heure">10H15</span><br />
             <span class="adresse">20 avenue Albert Einstein, Villeurbanne</span>
+
+            <img class="calendar-bg" src="static/img/calendar.png" />
           </li>
 
           <li>
