@@ -7,6 +7,9 @@ from database.models import Client
 
 app = Flask(__name__)
 
+# connect to mongodb
+connect_to_database()
+
 # fix for index page
 @app.route('/')
 def index():
@@ -18,7 +21,6 @@ def meeting():
 
 @app.route('/api/suggestions/<contact_id>/products')
 def suggested_products(contact_id):
-    connect_to_database()
     client = Client.objects(contact_id=contact_id)
     # TODO handle errors
     suggestions = get_suggested_products(client)
