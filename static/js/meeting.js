@@ -1,21 +1,28 @@
 (function($) {
   $(function() {
-    $('#frame-list-placeholder .frame').on('tap', function() {
-      var self = $(this),
-          mainFramePlaceholder = $('.main-frame-placeholder'),
-          mainFrame = mainFramePlaceholder.children().first();
-      if (mainFrame) {
-        mainFrame.prependTo(self.parents().first());
-      }
-      self.appendTo(mainFramePlaceholder);
+    $('ul.frames li').on('tap', function() {
+      var self = $(this), mainFrame = $('#main-frame');
+      mainFrame.html(self.html());
+      self.siblings().removeClass('selected');
+      self.addClass('selected');
     });
 
-    $('#main-frame-placeholder .frame').on('swipeleft', function() {
-      alert('negative');
-      $(this).remove();
+    var removeFrame = function(self) {
+      $('ul.frames li.selected').remove();
+      $(self).remove();
+    };
+
+    $('#controls button').on('tap', function() {
+      $(this).parents().first().hide();
+      // do some api call
+      //$.post('/api/meeting/negative', data);
+    });
+
+    $('#main-frame').on('swipeleft', function() {
+      removeFrame(this);
+      $('#controls').show();
     }).on('swiperight', function() {
-      alert('positive');
-      $(this).remove();
+      removeFrame(this);
     });
   });
 }) (jQuery);
