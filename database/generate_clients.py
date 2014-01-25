@@ -1,4 +1,9 @@
+import sys
 import random
+sys.path.insert(0,'..')
+import mongoengine
+from models import Client
+from settings import db_name
 
 probas = {
     'has_car': 0.7,
@@ -21,3 +26,7 @@ for pk, p in probas.iteritems():
     for i in xrange(0, int(p*len(clients))):
         clients[i][pk] = True
 random.shuffle(clients)
+
+mongoengine.connect('mindblast')
+for c in clients:
+    Client(**c).save()
