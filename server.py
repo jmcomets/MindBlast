@@ -1,7 +1,17 @@
 import sys
+import beatbox
 from flask import Flask
 
 app = Flask(__name__)
+
+# hard-coded app settings
+login = 'jean.marie.comets@gmail.com'
+password = 'saucebolo42'
+token = 'eorLqTAvZKwy0UwG8IfQ1UNo'
+
+# login to salesforce
+svc = beatbox.PythonClient()
+svc.login(login, password + token)
 
 @app.route('/')
 def index():
@@ -32,4 +42,8 @@ Namespaces are one honking great idea -- let's do more of those!
 """
 
 if __name__ == '__main__':
-    app.run(debug='--debug' in sys.argv, port=8888, ssl_context='adhoc')
+    app.run('0.0.0.0',
+            port=8888,
+            debug=True,
+            #ssl_context='adhoc'
+            )
