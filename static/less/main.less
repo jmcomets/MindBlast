@@ -4,7 +4,7 @@
 @font-face {
   font-family: "OpenSans Regular";
   src: url("../fonts/Regular/OpenSans-Regular.eot");
-  src: local("☺"),
+  src:
     url("../fonts/Regular/OpenSans-Regular.woff") format("woff"),
     url("../fonts/Regular/OpenSans-Regular.otf") format("opentype"),
     url("../fonts/Regular/OpenSans-Regular.svg") format("svg");
@@ -196,8 +196,13 @@ h4 {
       font-style: italic;
     }
 
+    .date {
+      font-size: 17px;
+    }
+
     .adresse {
       font-weight: bold;
+      font-size: 15px;
     }
 
     &::before {
@@ -214,6 +219,10 @@ h4 {
       text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.3);
     }
 
+    &.expected::after {
+      background: url(../img/calendar.png);
+    }
+
     &.cancelled {
       opacity: 0.5;
       background: #E3E3E3;
@@ -226,6 +235,12 @@ h4 {
 
     &.cancelled::before {
       content: "Rendez-vous annulé";
+    }
+
+
+    & .produits-abordes {
+      display: block;
+      font-size: 12px;
     }
 
   }
