@@ -10,7 +10,6 @@ app = Flask(__name__)
 
 # connect to mongodb
 connect_to_database()
-
 # fix for index page
 @app.route('/')
 def index():
@@ -26,6 +25,13 @@ def suggested_products(contact_id):
     # TODO handle errors
     suggestions = get_suggested_products(client)
     return '<br>'.join(map(lambda x: x[0] + ':' + x[1], suggestions))
+
+#@app.route('/api/icon/<family_name>')
+#def familly_icon(family_name):
+
+
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=8888,
