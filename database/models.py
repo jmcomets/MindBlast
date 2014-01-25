@@ -1,5 +1,4 @@
 from mongoengine import Document, fields
-# StringField, BooleanField, ListField, IntField, ReferenceField
 
 class Contract(Document):
     product_id = fields.StringField(unique=True)
