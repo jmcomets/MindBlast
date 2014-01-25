@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Home | MindBlaster</title>
-    <link rel="stylesheet/less" type="text/css" href="/static/css/normalize.css">
-    <!--<link rel="stylesheet/less" type="text/css" href="/static/css/main.css">-->
-    <link rel="stylesheet/less" type="text/css" href="/static/less/main.less">
+    <!--<link href="/static/css/normalize.css" rel="stylesheet/less">-->
+    <!--<link href="/static/css/main.css" rel="stylesheet/less">-->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/less/main.less" rel="stylesheet/less">
     <script type="text/javascript" src="/static/js/vendor/less-1.6.1.min.js"></script>
   </head>
   <body>
@@ -16,17 +17,57 @@
     <div class="page">
       <div class="profile">
         <div class="profile-head">
-          <img src="/static/logo.gif" width="100" height="100">
+          <img src="/static/logo.gif" />
           <h2>Rick Astley</h2>
         </div>
+        <hr>
+        <h4>Détails Client personnel</h4>
         <div class="profile-body">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="/static/img/logo_AXA_baby_off.png" />
+              <img src="/static/img/logo_AXA_car.png" />
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+              <img src="/static/img/logo_AXA_light.png" />
+              <img src="/static/img/logo_AXA_fade.png" />
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <dl class="dl-horizontal">
+                <dt>Nom du client</dt>
+                <dd>Rick Astley</dd>
+                <dt>Type</dt>
+                <dd>Client</dd>
+                <dt>Potentiel</dt>
+                <dd>Moyen/long terme</dd>
+                <dt>Valeur client</dt>
+                <dd>WHAAAAT</dd>
+              </dl>
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+              <dl class="dl-horizontal">
+                <dt>Numéro client FCA</dt>
+                <dd>C-4242</dd>
+                <dt>Numéro abonné</dt>
+                <dd>C-1337</dd>
+                <dt>Segment</dt>
+                <dd>52</dd>
+                <dt>Qualité perçue</dt>
+                <dd>COOOOL</dd>
+              </dl>
+            </div>
+          </div>
+          <hr>
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="/static/js/vendor/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="/static/js/vendor/modernizr-2.6.2.min.js "></script>
-    <script type="text/javascript" src="/static/js/plugins.js"></script>
-    <script type="text/javascript" src="/static/js/main.js"></script>
+    <script src="/static/js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="/static/js/vendor/modernizr-2.6.2.min.js "></script>
+    <script src="/static/js/plugins.js"></script>
+    <script src="/static/js/main.js"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   </body>
 </html>
