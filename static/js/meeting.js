@@ -1,16 +1,8 @@
 (function($) {
   $(function() {
-    $('ul.frames li').on('tap', function() {
-      var self = $(this), mainFrame = $('#main-frame');
-      mainFrame.html(self.html());
-      self.siblings().removeClass('selected');
-      self.addClass('selected');
+    $('.frame').on('tap', function() {
+      $(this).children('.details').slideToggle();
     });
-
-    var removeFrame = function(self) {
-      $('ul.frames li.selected').remove();
-      $(self).remove();
-    };
 
     $('#controls button').on('tap', function() {
       $(this).parents().first().hide();
@@ -19,10 +11,10 @@
     });
 
     $('#main-frame').on('swipeleft', function() {
-      removeFrame(this);
+      $(this).remove();
       $('#controls').show();
     }).on('swiperight', function() {
-      removeFrame(this);
+      $(this).remove();
     });
   });
 }) (jQuery);
