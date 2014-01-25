@@ -13,6 +13,10 @@ app = Flask(__name__)
 def index():
     return app.send_static_file('index.html')
 
+@app.route('/meeting')
+def meeting():
+    return app.send_static_file('meeting.html')
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=8888,
             debug=True or '--debug' in sys.argv)
