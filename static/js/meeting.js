@@ -1,20 +1,36 @@
 (function($) {
   $(function() {
-    $('.frame').on('tap', function() {
-      $(this).children('.details').slideToggle();
+    $('ul.frames li').on('tap', function() {
+      $this = $(this);
+      $this.siblings().removeClass('selected');
+      $this.addClass('selected');
     });
 
-    $('#controls button').on('tap', function() {
+    var removeFrame = function(self) {
+      $('ul.frames li.selected').remove();
+      $(self).remove();
+    };
+
+    $('.controls button').on('tap', function() {
       $(this).parents().first().hide();
       // do some api call
       //$.post('/api/meeting/negative', data);
     });
 
-    $('#main-frame').on('swipeleft', function() {
-      $(this).remove();
+    $('ul.frames li').on('swipeleft', function() {
+      if (!$(this).hasClass('selected')) {
+        return;
+      }
+
+      removeFrame(this);
       $('#controls').show();
     }).on('swiperight', function() {
-      $(this).remove();
+      if (!$(this).hasClass('selected')) {
+        return;
+      }
+
+      removeFrame(this);
     });
+
   });
 }) (jQuery);
