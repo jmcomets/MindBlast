@@ -1,7 +1,8 @@
 import sys
 import beatbox
 from flask import Flask
-from suggestions import get_suggested_products
+from suggestions import get_suggested_products_jm as get_suggested_products
+#from suggestions import get_suggested_products_ahmed as get_suggested_products
 from database import connect as connect_to_database
 from database.models import Client
 
