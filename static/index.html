@@ -9,6 +9,7 @@
     <link href="/static/less/main.less" rel="stylesheet/less">
     <script type="text/javascript" src="/static/js/vendor/less-1.6.1.min.js"></script>
   </head>
+
   <body>
     <div class="search-bar">
       <a href="#"><span class="fa fa-bars"></span></a>
@@ -21,7 +22,7 @@
           <h2>Rick Astley</h2>
         </div>
         <hr>
-        <h4>Détails Client personnel</h4>
+        <h4>Détails client</h4>
         <div class="profile-body">
           <div class="row">
             <div class="col-md-4">
@@ -29,8 +30,10 @@
               <img src="/static/img/logo_AXA_car.png" />
             </div>
             <div class="col-md-4 col-md-offset-4">
-              <img src="/static/img/logo_AXA_light.png" />
-              <img src="/static/img/logo_AXA_fade.png" />
+              <ul class="insurance-logos">
+                <li class="active"><img src="/static/img/logo_AXA_light.png" /></li>
+                <li><img src="/static/img/logo_AXA_light.png" /></li>
+              </ul>
             </div>
           </div>
           <br>
@@ -62,6 +65,34 @@
           </div>
           <hr>
         </div>
+      </div> <!-- END OF DIV "PROFILE" -->
+
+
+      <div class="meetings-wrapper">
+        <h4>Rendez-vous</h2>
+        <ul class="meetings">
+          <li class="expected">
+            Le <span class="date">27 Janvier 2014</span>, à <span class="heure">10H15</span><br />
+            <span class="adresse">20 avenue Albert Einstein, Villeurbanne</span>
+          </li>
+
+          <li>
+            Le <span class="date">13 Janvier 2014</span>, à <span class="heure">14h30</span><br />
+            <span class="adresse">128 rue des Tilleuls, Villeurbanne</span>
+          </li>
+
+          <li class="cancelled">
+            Le <span class="date">10 Janvier 2014</span>, à <span class="heure">08h30</span><br />
+            <span class="adresse">404 impasse Pay Hachepey, Villeurbanne</span>
+          </li>
+
+          <li>
+            Le <span class="date">16 Décembre 2013</span>, à <span class="heure">08h30</span><br />
+            <span class="adresse">30 boulevard Scuturici, Villeurbanne</span>
+          </li>
+
+        </ul>
+
       </div>
     </div>
     <script src="/static/js/vendor/jquery-1.10.2.min.js"></script>

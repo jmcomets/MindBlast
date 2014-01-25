@@ -4,8 +4,7 @@
 .search-bar {
   background-color: @light-blue;
   color: #fff;
-  padding:5px;
-  height: 31px;
+  padding: 10px 15px;
   .fa {
     font-size: 20px;
     color: #fff;
@@ -14,17 +13,19 @@
   .search-input {
     float: right;
     border: none;
-    border-radius: 8px;
-    height: 22px;
+    border-radius: 4px;
     width: 100%;
     max-width: 250px;
-    padding: 0 10px;
+    padding: 2px 10px;
     background-color: @dark-blue;
     color: #fff;
   }
 }
 
 .profile {
+  padding: 10px;
+
+
   .profile-head {
     display: block;
     height: 120px;
@@ -43,4 +44,77 @@
 
   .profile-body {
   }
+}
+
+
+.insurance-logos {
+  list-style: none;
+
+  li {
+    display: inline-block;
+  }
+
+  li:not(.active) img {
+    opacity: 0.5;
+
+    /* Grayscale filter */
+    filter: url(filters.svg#grayscale);
+    filter: gray;
+    -webkit-filter: grayscale(1);
+  }
+
+  li.active img {
+    filter: none;
+    -webkit-filter: grayscale(0);
+  }
+
+}
+
+.meetings {
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: 10px 10px;
+    border: 1px solid #E5E5E5;
+
+    .date, .heure, .adresse {
+      font-style: italic;
+    }
+
+    .adresse {
+      font-weight: bold;
+    }
+
+  }
+
+  li::before {
+    display: block;
+    opacity: 0.5;
+    text-shadow: none;
+    font-weight: bold;
+  }
+
+
+  li.expected {
+    background: #3498db;
+    color: #FFF;
+    font-weight: bold;
+    text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  li.cancelled {
+    opacity: 0.5;
+    background: #E3E3E3;
+  }
+
+  li.expected::before {
+    content: "Prochain rendez-vous";
+  }
+
+
+  li.cancelled::before {
+    content: "Rendez-vous annulé";
+  }
+
 }

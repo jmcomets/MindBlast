@@ -1,7 +1,6 @@
-import sys
 import beatbox
 from flask import Flask
-from settings import *
+from settings import login, password, token
 
 app = Flask(__name__)
 
