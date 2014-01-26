@@ -33,7 +33,7 @@ def get_suggested_products(client, force_db_load=False):
         for f in Feedback.objects(positive=True, client=c):
             scores[f.product.product_id] += sim
     _cache_suggested_products(client, scores)
-    return sorted(scores.items(), key = lambda e : e[1])
+    return sorted(scores.items(), key = lambda e : e[1], reverse=True)
 
 _cache_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'cache.json')
 def _get_cached_suggested_products(client):
@@ -48,17 +48,8 @@ def _cache_suggested_products(client, suggests):
         with open(_cache_filename, 'r') as fp:
             cache = json.load(fp)
     with open(_cache_filename, 'w') as fp:
-        cache[str(client.id)] = map(lambda x: (str(x[0]), str(x[1])), suggests)
+        cache[str(client.id)] = suggests
         json.dump(cache, fp)
-
-def _get_suggested_products(client):
-    client_similarities = list(get_client_similarities(client))
-    for product in Product.objects:
-        client_sum = 0
-        for other_client, client_score in client_similarities:
-            client_sum += client_score*get_client_estimated_score(other_client, product)
-        client_sum /= len(client_similarities)
-        yield product, client_sum
 
 if __name__ == '__main__':
     import database
@@ -67,8 +58,8 @@ if __name__ == '__main__':
     client = Client.objects().first()
     print client.boolean_attributes
 
-    products = get_suggested_products_ahmed(client)
+    products = get_suggested_products(client)
     print products
     for p_id, score in products:
-        p = Product.objects(product_id=p_id)
-        print p.name, score
+        p = Product.objects(product_id=p_id).first()
+        print p.name.encode('utf-8'), score
