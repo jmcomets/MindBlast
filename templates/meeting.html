@@ -17,7 +17,7 @@
   {% if products %}
   <ul class="frames">
     {% for product in products %}
-    <li data-id="a">
+    <li data-id="{{ product.id }}">
       <div class="controls-wrapper">
         <ul class="controls">
           <li data-reason="CHER">Prix trop élevé</li>
@@ -33,17 +33,13 @@
           </div>
           <div class="col-md-10">
             <h3 class="nom">
-              {{ product.Name }}
+              {{ product.name }}
             </h3>
             <span class="offre-com">
               <span class="glyphicon glyphicon-star"></span>
               {{ length(product.discounts) }}
               1 offre commerciale
             </span>
-            <div class="challenge inactive">
-              <span class="fa fa-trophy challenge-icon"></span>
-              <span class="challenge-name">Pas de challenge</span>
-            </div>
           </div>
         </div>
         <div class="details">
@@ -51,223 +47,14 @@
           <p class="description">
             {{ product.Description }}
           </p>
+          {% if product.discounts %}
           <h4>Offres commerciales :</h4>
-          {% for discount in product.discounts %}
           <ul class="offres-commerciales">
-            <li><span class="glyphicon glyphicon-star"></span> -30% sur la souscription à une assurance vie</li>
-            <li><span class="glyphicon glyphicon-star"></span> -15% sur la souscription à un</li>
+            {% for discount in product.discounts %}
+            <li><span class="glyphicon glyphicon-star"></span> {{ discount.description }}</li>
+            {% endfor %}
           </ul>
-          {% endfor %}
-        </div>
-      </div>
-    </li>
-
-
-    <li data-id="b">
-      <div class="controls-wrapper">
-        <ul class="controls">
-          <li data-reason="CHER">Prix trop élevé</li>
-          <li data-reason="INADAPTÉ">Produit inadapté</li>
-          <li data-reason="DÉJÀ-ASSURÉ">Déjà assuré et satisfait</li>
-          <li data-reason="MAUVAISE-REUNION">Mauvais déroulement de la réunion</li>
-        </ul>
-      </div>
-
-      <div class="content">
-        <div class="row recommendation">
-          <div class="col-md-2 icon-wrapper">
-            <img src="static/img/logo_axa.png" class="contract-icon">
-          </div>
-
-          <div class="col-md-10">
-
-            <h3 class="nom">
-              Assurance étranger - Niveau 3
-            </h3>
-
-            <span class="offre-com">
-              <span class="glyphicon glyphicon-star"></span>
-              1 offre commerciale
-            </span>
-
-            <div class="challenge inactive">
-
-              <span class="fa fa-trophy challenge-icon"></span>
-              <span class="challenge-name">Pas de challenge</span>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="details">
-
-          <p class="description">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-          </p>
-
-          <ul class="offres-commerciales">
-            <li>-30% sur la souscription à une assurance vie</li>
-            <li>-15% sur la souscription à un</li>
-          </ul>
-
-        </div>
-      </div>
-    </li>
-
-
-    <li data-id="c">
-      <div class="controls-wrapper">
-        <ul class="controls">
-          <li data-reason="CHER">Prix trop élevé</li>
-          <li data-reason="INADAPTÉ">Produit inadapté</li>
-          <li data-reason="DÉJÀ-ASSURÉ">Déjà assuré et satisfait</li>
-          <li data-reason="MAUVAISE-REUNION">Mauvais déroulement de la réunion</li>
-        </ul>
-      </div>
-
-      <div class="content">
-        <div class="row recommendation">
-          <div class="col-md-2 icon-wrapper">
-            <img src="static/img/logo_axa.png" class="contract-icon">
-          </div>
-
-          <div class="col-md-10">
-
-            <h3 class="nom">
-              Assurance étranger - Niveau 3
-            </h3>
-
-            <span class="offre-com">
-              <span class="glyphicon glyphicon-star"></span>
-              1 offre commerciale
-            </span>
-
-            <div class="challenge inactive">
-
-              <span class="fa fa-trophy challenge-icon"></span>
-              <span class="challenge-name">Pas de challenge</span>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="details">
-
-          <p class="description">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-          </p>
-
-          <ul class="offres-commerciales">
-            <li>-30% sur la souscription à une assurance vie</li>
-            <li>-15% sur la souscription à un</li>
-          </ul>
-
-        </div>
-      </div>
-    </li>
-
-
-
-    <li data-id="d">
-      <div class="controls-wrapper">
-        <ul class="controls">
-          <li data-reason="CHER">Prix trop élevé</li>
-          <li data-reason="INADAPTÉ">Produit inadapté</li>
-          <li data-reason="DÉJÀ-ASSURÉ">Déjà assuré et satisfait</li>
-          <li data-reason="MAUVAISE-REUNION">Mauvais déroulement de la réunion</li>
-        </ul>
-      </div>
-
-      <div class="content">
-        <div class="row recommendation">
-          <div class="col-md-2 icon-wrapper">
-            <img src="static/img/logo_axa.png" class="contract-icon">
-          </div>
-
-          <div class="col-md-10">
-
-            <h3 class="nom">
-              Assurance étranger - Niveau 3
-            </h3>
-
-            <span class="offre-com">
-              <span class="glyphicon glyphicon-star"></span>
-              1 offre commerciale
-            </span>
-
-            <div class="challenge inactive">
-
-              <span class="fa fa-trophy challenge-icon"></span>
-              <span class="challenge-name">Pas de challenge</span>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="details">
-
-          <p class="description">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-          </p>
-
-          <ul class="offres-commerciales">
-            <li>-30% sur la souscription à une assurance vie</li>
-            <li>-15% sur la souscription à un</li>
-          </ul>
-
-        </div>
-      </div>
-    </li>
-
-
-
-    <li data-id="e">
-      <div class="controls-wrapper">
-        <ul class="controls">
-          <li data-reason="CHER">Prix trop élevé</li>
-          <li data-reason="INADAPTÉ">Produit inadapté</li>
-          <li data-reason="DÉJÀ-ASSURÉ">Déjà assuré et satisfait</li>
-          <li data-reason="MAUVAISE-REUNION">Mauvais déroulement de la réunion</li>
-        </ul>
-      </div>
-
-      <div class="content">
-        <div class="row recommendation">
-          <div class="col-md-2 icon-wrapper">
-            <img src="static/img/logo_axa.png" class="contract-icon">
-          </div>
-
-          <div class="col-md-10">
-
-            <h3 class="nom">
-              Assurance étranger - Niveau 3
-            </h3>
-
-            <span class="offre-com">
-              <span class="glyphicon glyphicon-star"></span>
-              1 offre commerciale
-            </span>
-
-            <div class="challenge inactive">
-
-              <span class="fa fa-trophy challenge-icon"></span>
-              <span class="challenge-name">Pas de challenge</span>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="details">
-
-          <p class="description">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-          </p>
-
-          <ul class="offres-commerciales">
-            <li>-30% sur la souscription à une assurance vie</li>
-            <li>-15% sur la souscription à un</li>
-          </ul>
-
+          {% endif %}
         </div>
       </div>
     </li>
