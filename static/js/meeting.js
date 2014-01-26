@@ -86,21 +86,5 @@ $(document).ready(function() {
               reunion_id : $('#reunion').attr('data-id')};
     window.location.href = '/clients/003b000000KqjT8AAJ';
     console.log(params);
-  //   $.ajax({
-  //     url: "/clients/reunion/finish",
-  //     type: 'POST',
-  //     async: true,
-  //     dataType: "json",
-  //   data: JSON.stringify(params),
-  //   contentType: 'application/json;charset=UTF-8',
-  //     success: function (data) {
-  //       // console.log(data);
-  //       window.location.href = '/clients/003b000000KqjT8AAJ';
-  //     }
-  //   });
-  // });
-
-
-  // By default we select the first item
-  //$('.frames li').eq(0).tap();
+  });
 });
