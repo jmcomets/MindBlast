@@ -26,12 +26,12 @@ var approveItem = function(self) {
   FEEDBACKS[id].positive = true;
 
   $(self).addClass('light');
-  $(self).attr('style', 'height: ' + $(self).height() + 'px;');
-  $(self).toggle('slide', {direction: 'right'}, 600);
-
-  setTimeout(function() {
-    $(self).remove();
-  }, 1000);
+  $(self).find('.content').toggle('slide', {
+    direction: 'right',
+    complete: function() {
+      $(self).remove();
+    }
+  }, 600);
 };
 
 $(document).ready(function() {
