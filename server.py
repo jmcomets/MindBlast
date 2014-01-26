@@ -38,7 +38,7 @@ def client_detail(client_id):
             continue
         risqued.append(sugg)
     max_abs = max(map(lambda x: abs(x[1]), risqued))
-    risqued = map(lambda x: (x[0], int(100*0.2 + 0.7*abs(x[1])/float(2*max_abs))), risqued)
+    risqued = map(lambda x: (x[0], int(100*(0.2 + 0.7*abs(x[1])/float(2*max_abs)))), risqued)
     print recommendations
     print risqued
 
