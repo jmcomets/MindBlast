@@ -34,8 +34,10 @@ var approveItem = function(self) {
   }, 600);
 };
 
+var tapEvt = 'click vclick tap';
+
 $(document).ready(function() {
-  $('ul.frames li').on('tap, click', function() {
+  $('ul.frames li').on(tapEvt, function() {
     $this = $(this);
 
     $this.siblings().removeClass('selected');
@@ -46,7 +48,7 @@ $(document).ready(function() {
   });
 
   // Sélection d'un élément au click
-  $('.controls button').on('tap, click', function() {
+  $('.controls button').on(tapEvt, function() {
     $(this).parents().first().hide();
     // do some api call
     //$.post('/api/meeting/negative', data);
