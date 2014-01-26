@@ -33,7 +33,7 @@
       <tr>
         <td>{{ client.first_name }} {{ client.last_name }}</td>
         <td class="hidden-xs hidden-sm"><a href="mailto:{{ client.email }}">{{ client.email }}</a></td>
-        <td><a href="{{ url_for("client_detail", client_id=client.id) }}">Lien</a></td>
+        <td><a href="{{ url_for("client_detail", client_id=client.contact_id) }}">Lien</a></td>
         <td class="hidden-xs hidden-sm"><a href="{{ "https://eu2.salesforce.com/" + client.contact_id[:-3] }}">Lien</a></td>
       </tr>
     {% endfor %}

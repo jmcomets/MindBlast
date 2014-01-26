@@ -13,15 +13,17 @@ app = Flask(__name__)
 connect_to_database()
 
 @app.route('/')
-def list_clients():
+def index():
     return str(request.args)
 
-    # c_id = request.args.get('id')
-    # return client_detail(c_id)
+@app.route('/list')
+def list_clients():
+    clients = Client.objects()
+    return render_template('list_clients.html', clients=clients)
 
 @app.route('/clients/<client_id>')
 def client_detail(client_id):
-    client = Client.objects.get(id=client_id)
+    client = Client.objects.get(contact_id=client_id)
 
     # suggestions
     raw_suggestions = get_suggested_products(client)
@@ -47,7 +49,7 @@ def client_detail(client_id):
 
 @app.route('/clients/reunions/<client_id>')
 def meeting(client_id):
-    client = Client.objects(contact_id=client_id).first()
+    client = Client.objects.get(contact_id=client_id)
     # DEBUG ONLY
     products = Product.objects()[:5]
     return render_template('meeting.html', client=client, products=products)
@@ -55,9 +57,9 @@ def meeting(client_id):
 @app.route('/clients/reunion/finish', methods=['POST'])
 def finish_reunion():
     client_id, feedbacks = request.json['client_id'], request.json['feedbacks']
-    client = Client.objects(contact_id=client_id).first()
+    client = Client.objects.get(contact_id=client_id)
     for p_id, f in feedbacks.iteritems():
-        product = Product.objects(product_id=p_id).first()
+        product = Product.objects.get(product_id=p_id)
         if f['positive']:
             feedback = Feedback(client=client, product=product, positive=True)
         else:

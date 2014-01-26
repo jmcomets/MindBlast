@@ -42,6 +42,11 @@ class Client(Document):
         return Feedback.objects(client=self)
 
     @property
+    def name(self):
+        return '{} {}'.format(self.first_name, self.last_name)
+
+
+    @property
     def boolean_attributes(self):
         data = { 'has_car': self.has_car, 'has_child': self.has_child,
                 'is_married': self.is_married, 'is_owner': self.is_owner }
