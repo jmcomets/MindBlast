@@ -14,11 +14,12 @@ def get_client_estimated_score(client, product):
         if product not in feedback:
             continue
         sum_ += 1 if feedback.positive else -1
-    sum_ /= len(client_feedbacks)
+    if client_feedbacks:
+        sum_ /= len(client_feedbacks)
     return sum_
 
 def get_suggested_products_jm(client):
-    client_similarities = get_client_similarities(client)
+    client_similarities = list(get_client_similarities(client))
     for product in Product.objects:
         client_sum = 0
         for other_client, client_score in client_similarities:

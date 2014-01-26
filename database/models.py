@@ -107,6 +107,13 @@ class Client(Document, LazySforceDocument):
     #  'Id',
     #  'HomePhone']
 
+    @property
+    def reunions(self):
+        return Reunion.objects(client=self)
+
+    @property
+    def feedbacks(self):
+        return Feedback.objects(client=self)
 
     @property
     def boolean_attributes(self):
@@ -117,7 +124,7 @@ class Feedback(Document):
     reason = fields.StringField()
     client = fields.ReferenceField(Client)
 
-class Meetings(Document):
+class Reunion(Document):
     date = fields.DateTimeField(required=True)
     client = fields.ReferenceField(Client, required=True)
     feedbacks = fields.ListField(fields.ReferenceField(Feedback))
@@ -136,15 +143,3 @@ class Challenge(Document):
 class Discount(Document):
     products = fields.ListField(fields.ReferenceField(Product))
     description = fields.StringField(required=True)
-
-class OffreCommerciale(Document):
-    products = fields.ListField(fields.ReferenceField(Product), required=True)
-    description = fields.StringField(required=True)
-
-
-if __name__ == '__main__':
-    print Client.objects()
-    client = Client("003b000000KqjPVAAZ")
-    print client.Name
-    # with open("../contacts.txt",'r') as file:
-    #     p = Product(file.readline().strip('\r\n'))
