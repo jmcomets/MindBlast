@@ -8,6 +8,10 @@ class Product(Document):
     family = fields.StringField()
 
     @property
+    def challenges(self):
+        return Challenge.objects(contract=self)
+
+    @property
     def discounts(self):
         return Discount.objects(products__contains=self)
 
