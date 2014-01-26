@@ -1,0 +1,38 @@
+@new-saturation: 20%;
+@positive-color: desaturate(green, @new-saturation);
+@negative-color: desaturate(red, @new-saturation);
+
+.feedback-list {
+}
+
+.feedback {
+  display: block;
+  margin: 5px;
+
+  & .feedback-status {
+    margin-right: 0;
+    font-size: 60px;
+  }
+
+  /*&:hover * { color: #fff !important; }*/
+
+  &.feedback-positive {
+    /*&:hover { background-color: @positive-color; }*/
+    .feedback-status i { color: @positive-color; }
+  }
+
+  &.feedback-negative {
+    /*&:hover { background-color: @negative-color; }*/
+    .feedback-status i { color: @negative-color; }
+  }
+
+  & .nom {
+    font-size: 24px;
+    margin: 0 10px;
+    margin-top: 20px;
+    vertical-align: text-top;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

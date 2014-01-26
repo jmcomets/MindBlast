@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block style %}
+<link href="/static/less/reunion.less" rel="stylesheet/less">
+{% endblock %}
+
+{% block body %}
+
+<div>
+  <h2>Compte rendu: réunion du {{ reunion.date.strftime('%d %B %Y') }}</h2>
+  {% if reunion.feedbacks %}
+  <ul class="feedback-list list-unstyled">
+    {% for feedback in reunion.feedbacks %}
+    {% set product = feedback.product %}
+    <li class="feedback {% if feedback.positive %}feedback-positive{% else %}feedback-negative{% endif %} row">
+      <div class="col-xs-1 feedback-status">
+        {% if feedback.positive %}
+        <i class="fa fa-thumbs-up"></i>
+        {% else %}
+        <i class="fa fa-thumbs-down"></i>
+        {% endif %}
+      </div>
+      <div class="col-xs-10">
+        <h3 class="nom">{{ product.name }}</h3>
+        <strong>
+          {% if feedback.reason %}
+          {{ feedback.reason }}
+          {% endif %}
+        </strong>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <h4>Aucun retour sur les contrats n'est disponible</h4>
+  {% endif %}
+</div>
+
+{% endblock %}
