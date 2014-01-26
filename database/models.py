@@ -42,6 +42,16 @@ class Product(Document, LazySforceDocument):
     product_id = fields.StringField(unique=True)
     sforce_klass = 'Product2'
     sforce_id_attr = 'product_id'
+<<<<<<< HEAD
+=======
+
+    def __init__(self,id, *args, **kwargs):
+        super(Product, self).__init__(*args, **kwargs)
+        self._cache = None
+        self.product_id=id
+
+
+>>>>>>> df1a637b89454693fa9f66f85255313f1f4aee07
     attributes = svc.describeSObjects(sforce_klass)[0].fields.keys()
 
 
@@ -111,13 +121,13 @@ class Client(Document, LazySforceDocument):
 
 class Feedback(Document):
     positive = fields.BooleanField(required=True)
-    reason = fields.ListField(fields.StringField(), default=[])
+    reason = fields.StringField()
     client = fields.ReferenceField(Client)
 
-class Reunion(Document):
+class Meetings(Document):
     date = fields.DateTimeField(required=True)
     client = fields.ReferenceField(Client, required=True)
-    feedbacks = fields.ListField(fields.ReferenceField(Product))
+    feedbacks = fields.ListField(fields.ReferenceField(Feedback))
 
 class Challenge(Document):
     title = fields.StringField()
@@ -126,7 +136,7 @@ class Challenge(Document):
     max_value = fields.IntField()
     description = fields.StringField()
 
-class Promotion(Document):
+class discount(Document):
     products = fields.ListField(fields.ReferenceField(Product))
     description = fields.StringField(required=True)
 
