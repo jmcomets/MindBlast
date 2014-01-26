@@ -1,3 +1,5 @@
+import os
+import json
 from database.models import Client, Product, Feedback
 from collections import Counter
 
@@ -11,23 +13,18 @@ def get_client_estimated_score(client, product):
     sum_ = 0
     client_feedbacks = client.feedbacks
     for feedback in client_feedbacks:
-        if product not in feedback:
+        if feedback.product != product:
             continue
         sum_ += 1 if feedback.positive else -1
     if client_feedbacks:
         sum_ /= len(client_feedbacks)
     return sum_
 
-def get_suggested_products_jm(client):
-    client_similarities = list(get_client_similarities(client))
-    for product in Product.objects:
-        client_sum = 0
-        for other_client, client_score in client_similarities:
-            client_sum += client_score*get_client_estimated_score(other_client, product)
-        client_sum /= len(client_similarities)
-        yield product, client_sum
-
-def get_suggested_products_ahmed(client):
+def get_suggested_products(client, force_db_load=False):
+    if not force_db_load:
+        cached = _get_cached_suggested_products(client)
+        if cached:
+            return cached
     scores = Counter()
     clients = Client.objects(contact_id__ne=client.contact_id)
     for c in clients:
@@ -35,9 +32,33 @@ def get_suggested_products_ahmed(client):
                 if client.boolean_attributes[att] == val])
         for f in Feedback.objects(positive=True, client=c):
             scores[f.product.product_id] += sim
-
+    _cache_suggested_products(client, scores)
     return sorted(scores.items(), key = lambda e : e[1])
 
+_cache_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'cache.json')
+def _get_cached_suggested_products(client):
+    if os.path.exists(_cache_filename):
+        with open(_cache_filename, 'r') as fp:
+            cache = json.load(fp)
+            return cache.get(client.id)
+
+def _cache_suggested_products(client, suggests):
+    cache = {}
+    if os.path.exists(_cache_filename):
+        with open(_cache_filename, 'r') as fp:
+            cache = json.load(fp)
+    with open(_cache_filename, 'w') as fp:
+        cache[str(client.id)] = map(lambda x: (str(x[0]), str(x[1])), suggests)
+        json.dump(cache, fp)
+
+def _get_suggested_products(client):
+    client_similarities = list(get_client_similarities(client))
+    for product in Product.objects:
+        client_sum = 0
+        for other_client, client_score in client_similarities:
+            client_sum += client_score*get_client_estimated_score(other_client, product)
+        client_sum /= len(client_similarities)
+        yield product, client_sum
 
 if __name__ == '__main__':
     import database

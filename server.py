@@ -1,6 +1,6 @@
 import sys
 from flask import Flask, render_template
-from suggestions import (get_suggested_products_jm, get_suggested_products_ahmed)
+from suggestions import get_suggested_products
 from database import connect as connect_to_database
 from database.models import Client
 
@@ -16,7 +16,7 @@ def list_clients():
 @app.route('/clients/<client_id>')
 def client_detail(client_id):
     client = Client.objects.get(id=client_id)
-    suggestions = sorted(get_suggested_products_jm(client), key=lambda x: x[1], reverse=True)
+    suggestions = sorted(get_suggested_products(client), key=lambda x: x[1], reverse=True)
     recommendations = filter(lambda x: x[1] > 0.7, suggestions)
     risqued = filter(lambda x: x[1] < 0.3, suggestions)
     return render_template('client_detail.html', **locals())
@@ -24,7 +24,7 @@ def client_detail(client_id):
 @app.route('/clients/reunions/<client_id>')
 def meeting(client_id):
     client = Client.objects.get(id=client_id)
-    products = [s[0] for s in sorted(get_suggested_products_jm(client), key=lambda x: x[1])]
+    products = [s[0] for s in sorted(get_suggested_products(client), key=lambda x: x[1])]
     return render_template('meeting.html', **locals())
 
 #@app.route('/api/icon/<family_name>')
