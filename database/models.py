@@ -7,6 +7,11 @@ class Product(Document):
     description = fields.StringField()
     family = fields.StringField()
 
+    @property
+    def discounts(self):
+        return Discount.objects(products__contains=self)
+    
+
 class Client(Document):
     contact_id = fields.StringField(required=True, unique=True)
     has_car = fields.BooleanField(default=False)
@@ -60,3 +65,12 @@ class Challenge(Document):
 class Discount(Document):
     products = fields.ListField(fields.ReferenceField(Product))
     description = fields.StringField(required=True)
+
+
+if __name__ == '__main__':
+    print Client.objects()
+    client = Client("003b000000KqjPVAAZ")
+    print client.Name
+   # Product.object.get()
+    # with open("../contacts.txt",'r') as file:
+    #     p = Product(file.readline().strip('\r\n'))

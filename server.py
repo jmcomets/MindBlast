@@ -7,8 +7,6 @@ from database.models import Client
 app = Flask(__name__)
 
 # connect to mongodb
-connect_to_database()
-
 @app.route('/')
 def list_clients():
     return render_template('list_clients.html', clients=Client.objects)
