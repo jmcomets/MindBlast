@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
 {% block body %}
+
 <div class="page">
+  <input type="text" id="#client-name" class="form-control" placeholder="Nom du client">
   {% if clients %}
-  <table class="table">
+  <table class="table table-hover clients">
     <thead>
       <th>Prénom</th>
       <th>Nom</th>
-      <th>Lien sur MindBlast</th>
-      <th>Lien Salesforce</th>
+      <th>Profil Mindblast</th>
+      <th>Profil Salesforce</th>
     </thead>
     <tbody>
     {% for client in clients %}
@@ -30,5 +32,9 @@
   {% else %}
   <h1>Pas de clients disponibles</h1>
   {% endif %}
+  <script src="/static/js/list.js"></script>
+
+
 </div>
+
 {% endblock %}

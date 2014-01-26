@@ -35,16 +35,19 @@ def get_suggested_products_ahmed(client):
                 if client.boolean_attributes[att] == val])
         for f in Feedback.objects(positive=True, client=c):
             scores[f.product.product_id] += sim
-    return scores
+
+    return sorted(scores.items(), key = lambda e : e[1])
+
 
 if __name__ == '__main__':
     import database
     database.connect()
 
     client = Client.objects().first()
+    print client.boolean_attributes
 
-    scores = get_suggested_products_ahmed(client)
-    products = sorted((score, Product.objects(product_id=p_id).first()) for p_id, score in scores.iteritems())
-
-    for score, p in products:
-        print p.name
+    products = get_suggested_products_ahmed(client)
+    print products
+    for p_id, score in products:
+        p = Product.objects(product_id=p_id)
+        print p.name, score
