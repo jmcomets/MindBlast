@@ -34,7 +34,7 @@ var approveItem = function(self) {
   }, 600);
 };
 
-var tapEvt = 'click vclick tap';
+var tapEvt = 'tap';
 
 $(document).ready(function() {
   $('ul.frames li').on(tapEvt, function() {
