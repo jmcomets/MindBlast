@@ -15,11 +15,6 @@ app = Flask(__name__)
 
 # connect to mongodb
 connect_to_database()
-<<<<<<< HEAD
-
-=======
-# fix for index page
->>>>>>> df1a637b89454693fa9f66f85255313f1f4aee07
 @app.route('/')
 def index():
     clients = Client.objects()[:10]

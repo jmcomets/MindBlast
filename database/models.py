@@ -42,8 +42,6 @@ class Product(Document, LazySforceDocument):
     product_id = fields.StringField(unique=True)
     sforce_klass = 'Product2'
     sforce_id_attr = 'product_id'
-<<<<<<< HEAD
-=======
 
     def __init__(self,id, *args, **kwargs):
         super(Product, self).__init__(*args, **kwargs)
@@ -51,7 +49,6 @@ class Product(Document, LazySforceDocument):
         self.product_id=id
 
 
->>>>>>> df1a637b89454693fa9f66f85255313f1f4aee07
     attributes = svc.describeSObjects(sforce_klass)[0].fields.keys()
 
 
