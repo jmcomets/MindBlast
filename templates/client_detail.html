@@ -90,7 +90,7 @@
           <span class="fa fa-trophy challenge-icon"></span>
           <span class="challenge-name">{{ challenge.title }}</span>
           <div class="progress-bar">
-            <span class="completed" style="width: {{ challenge.progress }};"></span>
+            <span class="completed" style="width: {{ challenge.progress*100 }}%;"></span>
           </div>
         </div>
         {% endfor %}
