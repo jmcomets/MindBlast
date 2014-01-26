@@ -121,7 +121,11 @@ class Challenge(Document):
     max_value = fields.IntField()
     description = fields.StringField()
 
-class discount(Document):
+    @property
+    def progress(self):
+        return float(self.current_value) / float(self.max_value)
+
+class Discount(Document):
     products = fields.ListField(fields.ReferenceField(Product))
     description = fields.StringField(required=True)
 
