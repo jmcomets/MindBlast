@@ -48,15 +48,11 @@ class Product(Document, LazySforceDocument):
         self._cache = None
         self.product_id=id
 
-
     attributes = svc.describeSObjects(sforce_klass)[0].fields.keys()
-
-
 
 class Client(Document, LazySforceDocument):
     sforce_klass = 'Contact'
     sforce_id_attr = 'contact_id'
-
 
     contact_id = fields.StringField(required=True, unique=True)
     has_car = fields.BooleanField(default=False)
@@ -111,6 +107,13 @@ class Client(Document, LazySforceDocument):
     #  'Id',
     #  'HomePhone']
 
+    @property
+    def reunions(self):
+        return Reunion.objects(client=self)
+
+    @property
+    def feedbacks(self):
+        return Feedback.objects(client=self)
 
     @property
     def boolean_attributes(self):
@@ -121,7 +124,7 @@ class Feedback(Document):
     reason = fields.StringField()
     client = fields.ReferenceField(Client)
 
-class Meetings(Document):
+class Reunion(Document):
     date = fields.DateTimeField(required=True)
     client = fields.ReferenceField(Client, required=True)
     feedbacks = fields.ListField(fields.ReferenceField(Feedback))
@@ -133,12 +136,12 @@ class Challenge(Document):
     max_value = fields.IntField()
     description = fields.StringField()
 
-class discount(Document):
-    products = fields.ListField(fields.ReferenceField(Product))
-    description = fields.StringField(required=True)
+    @property
+    def progress(self):
+        return float(self.current_value) / float(self.max_value)
 
-class OffreCommerciale(Document):
-    products = fields.ListField(fields.ReferenceField(Product), required=True)
+class Discount(Document):
+    products = fields.ListField(fields.ReferenceField(Product))
     description = fields.StringField(required=True)
 
 

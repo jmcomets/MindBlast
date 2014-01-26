@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="page">
+  {% if clients %}
+  <table>
+    <thead>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Lien sur MindBlast</th>
+      <th>Lien Salesforce</th>
+    </thead>
+    <tbody>
+    {% for client in clients %}
+      <tr>
+        <td>{{ client.FirstName }}</td>
+        <td>{{ client.LastName }}</td>
+        <td>
+          {% set url_ = url_for("client_detail", client_id=client.id) %}
+          <a href="{{ url_ }}">{{ url_ }}</a>
+        </td>
+        <td>
+          {% set url_ = "https://eu2.salesforce.com/" + client.contact_id[:-3] %}
+          <a href="{{ url_ }}">{{ url_ }}</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <h1>Pas de clients disponibles</h1>
+  {% endif %}
+</div>
+{% endblock %}
