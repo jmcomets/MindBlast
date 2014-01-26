@@ -35,7 +35,7 @@ var approveItem = function(self) {
 };
 
 $(document).ready(function() {
-  $('ul.frames li').on('tap', function() {
+  $('ul.frames li').on('tap, click', function() {
     $this = $(this);
 
     $this.siblings().removeClass('selected');
@@ -46,7 +46,7 @@ $(document).ready(function() {
   });
 
   // Sélection d'un élément au click
-  $('.controls button').on('tap', function() {
+  $('.controls button').on('tap, click', function() {
     $(this).parents().first().hide();
     // do some api call
     //$.post('/api/meeting/negative', data);
@@ -102,5 +102,5 @@ $(document).ready(function() {
 
 
   // By default we select the first item
-  $('.frames li').eq(0).tap();
+  //$('.frames li').eq(0).tap();
 });
