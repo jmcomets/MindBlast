@@ -16,8 +16,8 @@ connect_to_database()
 def list_clients():
     return str(request.args)
 
-    c_id = request.args.get('id')
-    return client_detail(c_id)
+    # c_id = request.args.get('id')
+    # return client_detail(c_id)
 
 @app.route('/clients/<client_id>')
 def client_detail(client_id):
@@ -49,23 +49,23 @@ def client_detail(client_id):
 def meeting(client_id):
     client = Client.objects(contact_id=client_id).first()
     # DEBUG ONLY
-    products = Product.objects()[:10]
+    products = Product.objects()[:5]
     return render_template('meeting.html', client=client, products=products)
 
-@app.route('/clients/reunion/finish')
+@app.route('/clients/reunion/finish', methods=['POST'])
 def finish_reunion():
     client_id, feedbacks = request.json['client_id'], request.json['feedbacks']
     client = Client.objects(contact_id=client_id).first()
     for p_id, f in feedbacks.iteritems():
-        product = Product.objects(product_id=p_id)
+        product = Product.objects(product_id=p_id).first()
         if f['positive']:
             feedback = Feedback(client=client, product=product, positive=True)
         else:
             feedback = Feedback(client=client, product=product, positive=False, reason=f['reason'])
 
-        print feedback
+        print feedback.positive, feedback.client.name
         # feedback.save()
-        return 'ok'
+    return 'ok'
 
 #@app.route('/api/icon/<family_name>')
 #def family_icon(family_name):
