@@ -18,16 +18,7 @@ def get_client_estimated_score(client, product):
         sum_ /= len(client_feedbacks)
     return sum_
 
-def get_suggested_products_jm(client):
-    client_similarities = list(get_client_similarities(client))
-    for product in Product.objects:
-        client_sum = 0
-        for other_client, client_score in client_similarities:
-            client_sum += client_score*get_client_estimated_score(other_client, product)
-        client_sum /= len(client_similarities)
-        yield product, client_sum
-
-def get_suggested_products_ahmed(client):
+def get_suggested_products(client):
     scores = Counter()
     clients = Client.objects(contact_id__ne=client.contact_id)
     for c in clients:
@@ -37,14 +28,11 @@ def get_suggested_products_ahmed(client):
             scores[f.product.product_id] += sim
     return scores
 
-if __name__ == '__main__':
-    import database
-    database.connect()
-
-    client = Client.objects().first()
-
-    scores = get_suggested_products_ahmed(client)
-    products = sorted((score, Product.objects(product_id=p_id).first()) for p_id, score in scores.iteritems())
-
-    for score, p in products:
-        print p.name
+def _get_suggested_products(client):
+    client_similarities = list(get_client_similarities(client))
+    for product in Product.objects:
+        client_sum = 0
+        for other_client, client_score in client_similarities:
+            client_sum += client_score*get_client_estimated_score(other_client, product)
+        client_sum /= len(client_similarities)
+        yield product, client_sum
