@@ -9,7 +9,7 @@ def get_client_similarities(client):
 
 def get_client_estimated_score(client, product):
     sum_ = 0
-    client_feedbacks = client.reunions.feedbacks
+    client_feedbacks = client.feedbacks
     for feedback in client_feedbacks:
         if product not in feedback:
             continue
