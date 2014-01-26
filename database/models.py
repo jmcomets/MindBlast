@@ -128,5 +128,6 @@ class discount(Document):
 if __name__ == '__main__':
     client = Client("003b000000KqjPVAAZ")
     print client.Name
+   # Product.object.get()
     # with open("../contacts.txt",'r') as file:
     #     p = Product(file.readline().strip('\r\n'))
