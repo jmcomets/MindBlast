@@ -33,8 +33,8 @@ def get_suggested_products_ahmed(client):
     for c in clients:
         sim = len([att for att, val in c.boolean_attributes.items() \
                 if client.boolean_attributes[att] == val])
-        for p in Feedback.objects(positive=True, client=c):
-            scores += Counter({ p.product_id : sim  })
+        for f in Feedback.objects(positive=True, client=c):
+            scores[f.product.product_id] += sim
     return scores
 
 if __name__ == '__main__':

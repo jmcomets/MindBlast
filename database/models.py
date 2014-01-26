@@ -38,6 +38,7 @@ class Client(Document):
 class Feedback(Document):
     positive = fields.BooleanField(required=True)
     reason = fields.StringField()
+    product = fields.ReferenceField(Product)
     client = fields.ReferenceField(Client)
 
 class Reunion(Document):
