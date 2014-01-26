@@ -14,6 +14,8 @@ connect_to_database()
 
 @app.route('/')
 def list_clients():
+    return str(request.args)
+
     c_id = request.args.get('id')
     return client_detail(c_id)
 
