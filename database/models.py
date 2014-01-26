@@ -33,7 +33,7 @@ class Client(Document):
     def boolean_attributes(self):
         data = { 'has_car': self.has_car, 'has_child': self.has_child,
                 'is_married': self.is_married, 'is_owner': self.is_owner }
-        return data.values()
+        return data
 
 class Feedback(Document):
     positive = fields.BooleanField(required=True)
