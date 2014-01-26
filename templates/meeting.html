@@ -37,15 +37,16 @@
             </h3>
             <span class="offre-com">
               <span class="glyphicon glyphicon-star"></span>
-              {{ length(product.discounts) }}
-              1 offre commerciale
+              {% set suffix = "s" if product.discounts|length > 1 else "" %}
+              {{ product.discounts|length }}
+               offre{{suffix}} commerciale{{suffix}}
             </span>
           </div>
         </div>
         <div class="details">
           <h4>Description :</h4>
           <p class="description">
-            {{ product.Description }}
+            {{ product.description }}
           </p>
           {% if product.discounts %}
           <h4>Offres commerciales :</h4>
@@ -65,5 +66,11 @@
   {% endif %}
   <button type="button" class="btn btn-success btn-fin pull-right">Finir la réunion</button>
 </div>
+
+    <script src="/static/js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="/static/js/vendor/modernizr-2.6.2.min.js "></script>
+    <script src="/static/js/plugins.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/list.js"></script>
 
 {% endblock %}

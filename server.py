@@ -2,7 +2,7 @@ import sys
 from flask import Flask, render_template
 from suggestions import get_suggested_products
 from database import connect as connect_to_database
-from database.models import Client
+from database.models import Client, Product
 
 app = Flask(__name__)
 
@@ -23,9 +23,11 @@ def client_detail(client_id):
 
 @app.route('/clients/reunions/<client_id>')
 def meeting(client_id):
-    client = Client.objects.get(id=client_id)
-    products = [s[0] for s in sorted(get_suggested_products(client), key=lambda x: x[1])]
-    return render_template('meeting.html', **locals())
+    client = Client.objects(contact_id=client_id).first()
+    # DEBUG ONLY
+    products = Product.objects()[:10]
+    return render_template('meeting.html', client=client, products=products)
+
 
 #@app.route('/api/icon/<family_name>')
 #def family_icon(family_name):
