@@ -80,10 +80,22 @@ $(document).ready(function() {
     }, 200);
   })
 
-$('.btn-finish').click(function() {
-  console.log('finish');
-
-});
+  $('.btn-fin').click(function() {
+    params = {feedbacks : FEEDBACKS,
+              client_id : $('#client').attr('data-id')};
+    console.log(params);
+    $.ajax({
+      url: "/clients/reunion/finish",
+      type: 'POST',
+      async: true,
+      dataType: "json",
+    data: JSON.stringify(params),
+    contentType: 'application/json;charset=UTF-8',
+      success: function (data) {
+        console.log(data);
+      }
+    });
+  });
 
 
   // By default we select the first item
