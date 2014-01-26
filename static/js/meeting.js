@@ -82,7 +82,7 @@ $(document).ready(function() {
 
   $('.btn-fin').click(function() {
     params = {feedbacks : FEEDBACKS,
-              client_id : $('#client').attr('data-id')
+              client_id : $('#client').attr('data-id'),
               reunion_id : $('#reunion').attr('data-id')};
     console.log(params);
     $.ajax({

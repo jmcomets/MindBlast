@@ -53,8 +53,9 @@ def meeting(client_id, reunion_id):
     client = Client.objects.get(contact_id=client_id)
     reunion = Reunion.objects.get(id=reunion_id)
 
-    # DEBUG ONLY
-    products = Product.objects()[:5]
+    raw_suggestions = get_suggested_products(client)
+    products = map(lambda x: Product.objects.get(product_id=x[0]), raw_suggestions)
+
     return render_template('meeting.html', client=client, reunion=reunion, products=products)
 
 @app.route('/clients/reunion/finish', methods=['POST'])
@@ -70,10 +71,10 @@ def finish_reunion():
             feedback = Feedback(client=client, product=product, positive=False, reason=f['reason'])
 
         print feedback.positive, feedback.client.name
-        # feedback.save()
-        # reunion.feedbacks.append(feedback)
+        feedback.save()
+        reunion.feedbacks.append(feedback)
 
-    # reunion.save()
+    reunion.save()
     return 'ok'
 
 if __name__ == '__main__':
