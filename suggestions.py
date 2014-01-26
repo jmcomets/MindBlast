@@ -9,8 +9,7 @@ def get_suggested_products(client):
                 if client.boolean_attributes[att] == val])
         for f in Feedback.objects(client=c):
             scores[f.product.product_id] += sim if f.positive else -sim
-
-    return sorted(scores.items(), key = lambda e : e[1], reverse=True)
+    return sorted(scores.items(), key=lambda e: e[1], reverse=True)
 
 
 if __name__ == '__main__':

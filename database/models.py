@@ -10,7 +10,10 @@ class Product(Document):
     @property
     def discounts(self):
         return Discount.objects(products__contains=self)
-    
+
+    @property
+    def nb_discounts(self):
+        return Discount.objects(products__contains=self).count()
 
 class Client(Document):
     contact_id = fields.StringField(required=True, unique=True)

@@ -1,4 +1,4 @@
-o{% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block style %}
 <link href="/static/less/main.less" rel="stylesheet/less">
@@ -33,7 +33,7 @@ o{% extends "base.html" %}
       <div class="col-xs-4">
         <dl class="dl-horizontal">
           <dt>Nom du client</dt>
-          <dd>{{ client.Name }}</dd>
+          <dd>{{ client.name }}</dd>
           <dt>Type</dt>
           <dd>Client</dd>
           <dt>Potentiel</dt>
@@ -63,21 +63,19 @@ o{% extends "base.html" %}
   <h4>Suggestions</h4>
   {% if recommendations %}
   <ul class="recommendations">
-    {% for r in recommendations %}
-    {% set recommendation = r[0] %}
-    {% set score = r[1] %}
+    {% for recommendation in recommendations %}
     <li class="row recommendation">
       <div class="col-xs-2 icon-wrapper">
-        <img src="static/img/logo_axa.png" class="contract-icon">
+        <img src="/static/img/logo_axa.png" class="contract-icon">
       </div>
       <div class="col-xs-10">
         <h3 class="nom">
-          {{ recommendation.Name }}
+          {{ recommendation.name }}
         </h3>
         {% if recommendation.discounts %}
         <span class="offre-com">
           <span class="glyphicon glyphicon-star"></span>
-          {{ length(recommendation.discounts) }}
+          {{ recommendation.nb_discounts }}
           offres commerciales
         </span>
         {% else %}
@@ -111,105 +109,55 @@ o{% extends "base.html" %}
   {% endif %}
 
   <h4>Opportunités risquées</h4>
-  {% for recommendation in risqued %}
-  {% endfor %}
+  {% if risqued %}
   <ul class="recommendations risqued">
-
+    {% for r in risqued %}
+    {% set recommendation = r[0] %}
+    {% set score = r[1] %}
     <li class="row recommendation">
-        <div class="col-xs-3">
-          <img src="static/img/logo_axa.png" class="contract-icon">
-        </div>
-
-        <div class="col-xs-9">
-
-          <h3 class="nom">
-            Assurance retraite - Niveau 2
-          </h3>
-
-          <span class="danger-refus">
-            <span class="glyphicon glyphicon-exclamation-sign exclamation"></span>
-            Risque de refus: <strong>67%</strong>
-          </span>
-
-
-        </div>
+      <div class="col-xs-3">
+        <img src="/static/img/logo_axa.png" class="contract-icon">
+      </div>
+      <div class="col-xs-9">
+        <h3 class="nom">
+          {{ recommendation.name }}
+        </h3>
+        <span class="danger-refus">
+          <span class="glyphicon glyphicon-exclamation-sign exclamation"></span>
+          Risque de refus: <strong>{{ score }}</strong>
+        </span>
+      </div>
     </li>
-
-    <li class="row recommendation">
-        <div class="col-xs-3">
-          <img src="static/img/logo_axa.png" class="contract-icon">
-        </div>
-
-        <div class="col-xs-9">
-
-          <h3 class="nom">
-            Assurance auto - Niveau 3
-          </h3>
-
-          <span class="danger-refus">
-            <span class="glyphicon glyphicon-exclamation-sign exclamation"></span>
-            Risque de refus: <strong>39%</strong>
-          </span>
-
-
-        </div>
-    </li>
-
-    <li class="row recommendation">
-        <div class="col-xs-3">
-          <img src="static/img/logo_axa.png" class="contract-icon">
-        </div>
-
-        <div class="col-xs-9">
-
-          <h3 class="nom">
-            Assurance domicile - Niveau 2
-          </h3>
-          <span class="danger-refus">
-            <span class="glyphicon glyphicon-exclamation-sign exclamation"></span>
-            Risque de refus: <strong>22%</strong>
-          </span>
-        </div>
-    </li>
+    {% endfor %}
   </ul>
+  {% else %}
+  <h3>Pas de risques disponibles</h3>
+  {% endif %}
 </div>
 
 <div class="meetings-wrapper">
   <h4>Rendez-vous</h4>
-  {% if reunions %}
+  {% if all_meetings %}
   <ul class="meetings">
-  {% for reunion in client.reunions %}
-  {% endfor %}
-</ul>
+    {% for meeting in scheduled_meetings %}
+    <li class="expected">
+      Le <span class="date">{{ meeting.date.strftime('%d %B %Y') }}</span>, à
+      <span class="heure">{{ meeting.date.strftime('%hH%M') }}</span><br>
+      <span class="adresse">{{ client.mailing_street }}, {{ client.mailing_city }}</span>
+      <img class="calendar-bg" src="/static/img/calendar.png" />
+    </li>
+    {% endfor %}
+    {% for meeting in passed_meetings %}
+    <li>
+      Le <span class="date">{{ meeting.date.strftime('%d %B %Y') }}</span>, à
+      <span class="heure">{{ meeting.date.strftime('%hH%M') }}</span><br>
+      <span class="adresse">{{ client.mailing_street }}, {{ client.mailing_city }}</span>
+      <img class="calendar-bg" src="/static/img/calendar.png" />
+    </li>
+    {% endfor %}
+  </ul>
   {% else %}
   <h3>Pas de rendez-vous prévu</h3>
   {% endif %}
-  <ul class="meetings">
-    <li class="expected">
-      Le <span class="date">27 Janvier 2014</span>, à <span class="heure">10H15</span><br />
-      <span class="adresse">20 avenue Albert Einstein, Villeurbanne</span>
-
-      <img class="calendar-bg" src="static/img/calendar.png" />
-    </li>
-
-    <li>
-      Le <span class="date">13 Janvier 2014</span>, à <span class="heure">14h30</span><br />
-      <span class="adresse">128 rue des Tilleuls, Villeurbanne</span>
-      <span class="produits-abordes"><strong>Produits abordés :</strong> Assurance domicile, Assurance auto, Assurance études.</span>
-
-    </li>
-
-    <li class="cancelled">
-      Le <span class="date">10 Janvier 2014</span>, à <span class="heure">08h30</span><br />
-      <span class="adresse">404 impasse Pay Hachepey, Villeurbanne</span>
-    </li>
-
-    <li>
-      Le <span class="date">16 Décembre 2013</span>, à <span class="heure">08h30</span><br />
-      <span class="adresse">30 boulevard Scuturici, Villeurbanne</span>
-    </li>
-
-  </ul>
-</div>
 
 {% endblock %}
