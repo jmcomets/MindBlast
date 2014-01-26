@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import datetime
 from flask import Flask, render_template, request
 from suggestions import get_suggested_products
 from database import connect as connect_to_database
-from database.models import Client, Product, Feedback
+from database.models import Client, Product, Feedback, Reunion
 
 app = Flask(__name__)
 
@@ -66,6 +67,10 @@ def finish_reunion():
         print feedback
         # feedback.save()
         return 'ok'
+
+@app.route('/clients/reunion/<reunion_id>')
+def reunion_detail(reunion_id):
+    return render_template('reunion.html', reunion=Reunion.objects.get(id=reunion_id))
 
 #@app.route('/api/icon/<family_name>')
 #def family_icon(family_name):
