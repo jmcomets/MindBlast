@@ -1,0 +1,135 @@
+.ui-loader {
+    display: none;
+}
+
+.frames {
+    padding: 0;
+    & > li {
+        position: relative;
+        /* Deactivate selection */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+
+        /* Style change transition */
+        -webkit-transition:all ease-in-out 0.2s;
+        -moz-transition:all ease-in-out 0.2s;
+        -ms-transition:all ease-in-out 0.2s;
+        -o-transition:all ease-in-out 0.2s;
+        transition:all ease-in-out 0.2s;
+
+        opacity: 0.5;
+
+        width: 100%;
+        padding: 20px 0;
+        border: 1px solid #D6D6D6;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+
+        text-align: center;
+        padding: 14px;
+
+        & .nom {
+            margin-top: 20px;
+            font-size: 30px;
+        }
+        & .offre-com {
+            font-size: 20px;
+            font-weight: normal;
+        }
+        & .challenge {
+            display: none;
+        }
+
+        /* Détails, cachés par défaut */
+        & .details {
+            display: none;
+        }
+
+
+        & .description {
+            text-align: left;
+        }
+
+        & .offres-commerciales {
+            text-align: left;
+            list-style: none;
+        }
+
+        & h4 {
+            text-align: left;
+        }
+
+        & .contract-icon {
+            max-width: 120px;
+        }
+    }
+
+    & > li.selected {
+        opacity: 1;
+
+        border: 1px solid #3D8DC2;
+
+
+        background: #3498db;
+        color: #FFF;
+        text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.3);
+        color: #FFF;
+
+        & .offre-com {
+            color: #FFF;
+        }
+
+        // & .details {
+        //     display: block;
+        // }
+
+
+    }
+
+}
+
+.dark {
+    background: #c0392b !important;
+}
+
+.light {
+    background: #27ae60 !important;
+}
+
+.controls-wrapper {
+    /* Hidden by default */
+    display: none;
+}
+
+.controls {
+    list-style: none;
+    border-radius: 5px;
+    margin: 30px auto;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 0;
+
+    & li {
+        border: 1px solid #D2D2D2;
+        color: #424242;
+        background: #FFF;
+        padding: 10px;
+    }
+
+
+    & li:hover {
+        border: 1px solid #393939;
+        color: #FFF;
+        background: #393939;
+    }
+}
+
+button.btn-fin {
+    padding: 10px;
+    font-size: 20px;
+    margin: 15px;
+}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block body %}
+  {% if clients %}
+  <div id="hero-container" class="jumbotron">
+    <div class="container">
+      <h1>Bienvenue sur MindBlast</h1>
+      <p>
+        Sélectionnez un de vos clients pour accéder à sa fiche et vous préparer
+        au rendez-vous.
+      </p>
+    </div>
+  </div>
+  <style>
+    #hero-container {
+      background-color: #3498db;
+      color: #fff;
+    }
+
+    #hero-container h1 {
+      text-shadow: 1px 1px #444;
+    }
+  </style>
+  <table class="table table-hover clients">
+    <thead>
+      <th>Nom</th>
+      <th class="hidden-xs hidden-sm">Email</th>
+      <th>Mindblast</th>
+      <th class="hidden-xs hidden-sm">Salesforce</th>
+    </thead>
+    <tbody>
+    {% for client in clients %}
+      <tr>
+        <td>{{ client.first_name }} {{ client.last_name }}</td>
+        <td class="hidden-xs hidden-sm"><a href="mailto:{{ client.email }}">{{ client.email }}</a></td>
+        <td><a href="{{ url_for("client_detail", client_id=client.id) }}">Lien</a></td>
+        <td class="hidden-xs hidden-sm"><a href="{{ "https://eu2.salesforce.com/" + client.contact_id[:-3] }}">Lien</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <h1>Pas de clients disponibles</h1>
+  {% endif %}
+
+</div>
+
+{% endblock %}

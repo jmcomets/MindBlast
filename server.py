@@ -1,49 +1,35 @@
 import sys
-import beatbox
-from flask import Flask
+from flask import Flask, render_template
+from suggestions import get_suggested_products
+from database import connect as connect_to_database
+from database.models import Client
 
 app = Flask(__name__)
 
-# hard-coded app settings
-login = 'jean.marie.comets@gmail.com'
-password = 'saucebolo42'
-token = 'eorLqTAvZKwy0UwG8IfQ1UNo'
-
-# login to salesforce
-svc = beatbox.PythonClient()
-svc.login(login, password + token)
+# connect to mongodb
+connect_to_database()
 
 @app.route('/')
-def index():
-    return """
-<pre>
-The Zen of Python, by Tim Peters
+def list_clients():
+    return render_template('list_clients.html', clients=Client.objects)
 
-Beautiful is better than ugly.
-Explicit is better than implicit.
-Simple is better than complex.
-Complex is better than complicated.
-Flat is better than nested.
-Sparse is better than dense.
-Readability counts.
-Special cases aren't special enough to break the rules.
-Although practicality beats purity.
-Errors should never pass silently.
-Unless explicitly silenced.
-In the face of ambiguity, refuse the temptation to guess.
-There should be one-- and preferably only one --obvious way to do it.
-Although that way may not be obvious at first unless you're Dutch.
-Now is better than never.
-Although never is often better than *right* now.
-If the implementation is hard to explain, it's a bad idea.
-If the implementation is easy to explain, it may be a good idea.
-Namespaces are one honking great idea -- let's do more of those!
-</pre>
-"""
+@app.route('/clients/<client_id>')
+def client_detail(client_id):
+    client = Client.objects.get(id=client_id)
+    suggestions = sorted(get_suggested_products(client), key=lambda x: x[1], reverse=True)
+    recommendations = filter(lambda x: x[1] > 0.7, suggestions)
+    risqued = filter(lambda x: x[1] < 0.3, suggestions)
+    return render_template('client_detail.html', **locals())
+
+@app.route('/clients/reunions/<client_id>')
+def meeting(client_id):
+    client = Client.objects.get(id=client_id)
+    products = [s[0] for s in sorted(get_suggested_products(client), key=lambda x: x[1])]
+    return render_template('meeting.html', **locals())
+
+#@app.route('/api/icon/<family_name>')
+#def family_icon(family_name):
 
 if __name__ == '__main__':
-    app.run('0.0.0.0',
-            port=8888,
-            debug=True,
-            #ssl_context='adhoc'
-            )
+    app.run('0.0.0.0', port=8888,
+            debug=True or '--debug' in sys.argv)
