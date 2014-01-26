@@ -11,7 +11,7 @@ def get_client_estimated_score(client, product):
     sum_ = 0
     client_feedbacks = client.feedbacks
     for feedback in client_feedbacks:
-        if product not in feedback:
+        if feedback.product != product:
             continue
         sum_ += 1 if feedback.positive else -1
     if client_feedbacks:
