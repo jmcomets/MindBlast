@@ -159,6 +159,7 @@
       <span class="adresse">{{ client.mailing_street }}, {{ client.mailing_city }}</span>
       <img class="calendar-bg" src="/static/img/calendar.png" />
     </li>
+    </a>
     {% endfor %}
     {% for meeting in passed_meetings %}
     <li>
@@ -166,7 +167,6 @@
       <span class="heure">{{ meeting.date.strftime('%Hh%M') }}</span><br>
       <span class="adresse">{{ client.mailing_street }}, {{ client.mailing_city }}</span>
     </li>
-    </a>
     {% endfor %}
     <style type="text/css" media="screen">
       .meetings *:hover {
