@@ -22,9 +22,13 @@ def client_detail(client_id):
     risqued = filter(lambda x: x[1] < 0.3, suggestions)
     return render_template('client_detail.html', **locals())
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
 @app.route('/meeting')
 def meeting():
-    return app.send_static_file('meeting.html')
+    return render_template('meeting.html')
 
 @app.route('/api/suggestions/<contact_id>/products')
 def suggested_products(contact_id):

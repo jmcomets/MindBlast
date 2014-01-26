@@ -4,6 +4,9 @@ sys.path.insert(0,'..')
 from settings import *
 import beatbox
 
+import database
+database.connect()
+
 svc = beatbox.PythonClient()
 svc.login(login, password + token)
 
@@ -11,28 +14,36 @@ class LazySforceDocument(object):
     sforce_klass = None
     sforce_id_attr = None
     attributes = []
+    _cache = {}
 
     def __getattribute__(self, attr):
         try:
             return super(LazySforceDocument, self).__getattribute__(attr)
-        except AttributeError:
+        except AttributeError as e:
             if attr not in self.attributes:
-                raise AttributeError
-            if not hasattr(self, '_cached_time') or not self._cached_time:
-                query = "select %s from %s where Id='%s'" \
-                    % (', '.join(self.attributes),
-                        self.sforce_klass,
-                        getattr(self, self.sforce_id_attr))
-                res = svc.query(query)
-                if not res:
-                    raise ValueError("No entries for given ID")
-                self._cache = res[0]
+                raise e
+
+        if self._cache:
             return self._cache[attr]
+
+        query = "SELECT %s FROM %s WHERE Id='%s'" \
+            % (', '.join(self.attributes),
+                self.sforce_klass,
+                getattr(self, self.sforce_id_attr))
+
+        res = svc.query(query)
+        if not res:
+            raise ValueError("No entries for given ID")
+
+        self._cache = res[0]
+        return self._cache[attr]
 
 class Product(Document, LazySforceDocument):
     product_id = fields.StringField(unique=True)
     sforce_klass = 'Product2'
     sforce_id_attr = 'product_id'
+<<<<<<< HEAD
+=======
 
     def __init__(self,id, *args, **kwargs):
         super(Product, self).__init__(*args, **kwargs)
@@ -40,12 +51,15 @@ class Product(Document, LazySforceDocument):
         self.product_id=id
 
 
+>>>>>>> df1a637b89454693fa9f66f85255313f1f4aee07
     attributes = svc.describeSObjects(sforce_klass)[0].fields.keys()
+
 
 
 class Client(Document, LazySforceDocument):
     sforce_klass = 'Contact'
     sforce_id_attr = 'contact_id'
+
 
     contact_id = fields.StringField(required=True, unique=True)
     has_car = fields.BooleanField(default=False)
@@ -100,6 +114,7 @@ class Client(Document, LazySforceDocument):
     #  'Id',
     #  'HomePhone']
 
+
     @property
     def boolean_attributes(self):
         return {"has_car": self.has_car, "has_child": self.has_child, "is_married": self.is_married, "is_owner": self.is_owner}
@@ -129,7 +144,13 @@ class Discount(Document):
     products = fields.ListField(fields.ReferenceField(Product))
     description = fields.StringField(required=True)
 
+class OffreCommerciale(Document):
+    products = fields.ListField(fields.ReferenceField(Product), required=True)
+    description = fields.StringField(required=True)
+
+
 if __name__ == '__main__':
+    print Client.objects()
     client = Client("003b000000KqjPVAAZ")
     print client.Name
     # with open("../contacts.txt",'r') as file:
