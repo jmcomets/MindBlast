@@ -3,7 +3,7 @@
 {% block body %}
 <div class="page">
   {% if clients %}
-  <table>
+  <table class="table">
     <thead>
       <th>Prénom</th>
       <th>Nom</th>
@@ -13,8 +13,8 @@
     <tbody>
     {% for client in clients %}
       <tr>
-        <td>{{ client.FirstName }}</td>
-        <td>{{ client.LastName }}</td>
+        <td>{{ client.first_name }}</td>
+        <td>{{ client.last_name }}</td>
         <td>
           {% set url_ = url_for("client_detail", client_id=client.id) %}
           <a href="{{ url_ }}">{{ url_ }}</a>
