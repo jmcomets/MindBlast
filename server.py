@@ -1,8 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import sys
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from suggestions import get_suggested_products
 from database import connect as connect_to_database
-from database.models import Client, Product
+from database.models import Client, Product, Feedback
 
 app = Flask(__name__)
 
@@ -11,7 +14,8 @@ connect_to_database()
 
 @app.route('/')
 def list_clients():
-    return render_template('list_clients.html', clients=Client.objects)
+    c_id = request.args.get('id')
+    return client_detail(c_id)
 
 @app.route('/clients/<client_id>')
 def client_detail(client_id):
@@ -28,6 +32,20 @@ def meeting(client_id):
     products = Product.objects()[:10]
     return render_template('meeting.html', client=client, products=products)
 
+@app.route('/clients/reunion/finish')
+def finish_reunion():
+    client_id, feedbacks = request.json['client_id'], request.json['feedbacks']
+    client = Client.objects(contact_id=client_id).first()
+    for p_id, f in feedbacks.iteritems():
+        product = Product.objects(product_id=p_id)
+        if f['positive']:
+            feedback = Feedback(client=client, product=product, positive=True)
+        else:
+            feedback = Feedback(client=client, product=product, positive=False, reason=f['reason'])
+
+        print feedback
+        # feedback.save()
+        return 'ok'
 
 #@app.route('/api/icon/<family_name>')
 #def family_icon(family_name):
