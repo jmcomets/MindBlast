@@ -60,9 +60,14 @@ def meeting(client_id, reunion_id):
 
 @app.route('/clients/reunion/finish', methods=['POST'])
 def finish_reunion():
-    client_id, reunion_id, feedbacks = request.json['client_id'], request.json['feedbacks']
+    print request.json
+
+    client_id, reunion_id, feedbacks = request.json['client_id'], request.json['reunion_id'], request.json['feedbacks']
     client = Client.objects.get(contact_id=client_id)
     reunion = Reunion.objects.get(id=reunion_id)
+
+    print "DONE"
+
     for p_id, f in feedbacks.iteritems():
         product = Product.objects.get(product_id=p_id)
         if f['positive']:
@@ -70,7 +75,6 @@ def finish_reunion():
         else:
             feedback = Feedback(client=client, product=product, positive=False, reason=f['reason'])
 
-        print feedback.positive, feedback.client.name
         feedback.save()
         reunion.feedbacks.append(feedback)
 
