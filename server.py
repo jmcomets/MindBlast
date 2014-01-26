@@ -44,7 +44,7 @@ def client_detail(client_id):
 
     # meetings
     all_meetings = client.reunions
-    scheduled_meetings = [x for x in all_meetings if x.date() > datetime.datetime.now()]
+    scheduled_meetings = [x for x in all_meetings if x.date > datetime.datetime.now()]
     passed_meetings = [x for x in all_meetings if x not in scheduled_meetings]
     return render_template('client_detail.html', **locals())
 
@@ -73,9 +73,6 @@ def finish_reunion():
 @app.route('/clients/reunion/<reunion_id>')
 def reunion_detail(reunion_id):
     return render_template('reunion.html', reunion=Reunion.objects.get(id=reunion_id))
-
-#@app.route('/api/icon/<family_name>')
-#def family_icon(family_name):
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=8888,
