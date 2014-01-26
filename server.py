@@ -28,6 +28,7 @@ def meeting(client_id):
     products = Product.objects()[:10]
     return render_template('meeting.html', client=client, products=products)
 
+
 #@app.route('/api/icon/<family_name>')
 #def family_icon(family_name):
 
