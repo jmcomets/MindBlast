@@ -7,6 +7,11 @@ class Product(Document):
     description = fields.StringField()
     family = fields.StringField()
 
+    @property
+    def discounts(self):
+        return Discount.objects(products__contains=self)
+    
+
 class Client(Document):
     contact_id = fields.StringField(required=True, unique=True)
     has_car = fields.BooleanField(default=False)
