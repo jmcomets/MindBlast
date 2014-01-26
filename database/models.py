@@ -18,7 +18,7 @@ class Client(Document):
     email = fields.StringField()
     phone = fields.StringField()
     description = fields.StringField()
-    mailing_street= fields.StringField()
+    mailing_street = fields.StringField()
     mailing_city = fields.StringField()
 
     @property
