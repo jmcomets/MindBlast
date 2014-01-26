@@ -78,7 +78,12 @@ $(document).ready(function() {
     setTimeout(function() {
       $this.remove();
     }, 200);
-  });
+  })
+
+$('.btn-finish').click(function() {
+  console.log('finish');
+
+});
 
 
   // By default we select the first item
