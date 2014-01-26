@@ -71,7 +71,7 @@ class Challenge(Document):
 
     @property
     def progress(self):
-        return float(self.current_value) / float(self.max_value)
+        return 100*float(self.current_value)/float(self.max_value)
 
 class Discount(Document):
     products = fields.ListField(fields.ReferenceField(Product))

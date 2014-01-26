@@ -93,7 +93,14 @@
         {% for challenge in recommendation.challenges %}
         <div class="challenge">
           <span class="fa fa-trophy challenge-icon"></span>
-          <span class="challenge-name">{{ challenge.title }}</span>
+          <span class="challenge-name {% if not challenge.title %}shit-hidden{% endif %}">
+            {{ challenge.title }}
+            <style type="text/css" media="screen">
+              .challenge-name.shit-hidden {
+                color: white;
+              }
+            </style>
+          </span>
           <div class="progress-bar">
             <span class="completed" style="width: {{ challenge.progress }}%;"></span>
           </div>
