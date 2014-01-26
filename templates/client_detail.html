@@ -152,9 +152,10 @@
   {% if all_meetings %}
   <ul class="meetings">
     {% for meeting in scheduled_meetings %}
+    <a href="{{ '/clients/reunions/%s/%s' % (client.contact_id, meeting.id) }}">
     <li class="expected">
       Le <span class="date">{{ meeting.date.strftime('%d %B %Y') }}</span>, à
-      <span class="heure">{{ meeting.date.strftime('%hH%M') }}</span><br>
+      <span class="heure">{{ meeting.date.strftime('%Hh%M') }}</span><br>
       <span class="adresse">{{ client.mailing_street }}, {{ client.mailing_city }}</span>
       <img class="calendar-bg" src="/static/img/calendar.png" />
     </li>
@@ -162,11 +163,17 @@
     {% for meeting in passed_meetings %}
     <li>
       Le <span class="date">{{ meeting.date.strftime('%d %B %Y') }}</span>, à
-      <span class="heure">{{ meeting.date.strftime('%hH%M') }}</span><br>
+      <span class="heure">{{ meeting.date.strftime('%Hh%M') }}</span><br>
       <span class="adresse">{{ client.mailing_street }}, {{ client.mailing_city }}</span>
       <img class="calendar-bg" src="/static/img/calendar.png" />
     </li>
+    </a>
     {% endfor %}
+    <style type="text/css" media="screen">
+      .meetings *:hover {
+        text-decoration: none !important;
+      }
+    </style>
   </ul>
   {% else %}
   <h3>Pas de rendez-vous prévu</h3>
