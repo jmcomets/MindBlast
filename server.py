@@ -15,7 +15,7 @@ connect_to_database()
 
 @app.route('/')
 def index():
-    return str(request.args)
+    return client_detail('003b000000KqjT8AAJ')
 
 @app.route('/list')
 def list_clients():
