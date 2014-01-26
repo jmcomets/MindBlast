@@ -48,17 +48,20 @@ def client_detail(client_id):
     passed_meetings = [x for x in all_meetings if x not in scheduled_meetings]
     return render_template('client_detail.html', **locals())
 
-@app.route('/clients/reunions/<client_id>')
-def meeting(client_id):
+@app.route('/clients/reunions/<client_id>/<reunion_id>')
+def meeting(client_id, reunion_id):
     client = Client.objects.get(contact_id=client_id)
+    reunion = Reunion.objects.get(id=reunion_id)
+
     # DEBUG ONLY
     products = Product.objects()[:5]
-    return render_template('meeting.html', client=client, products=products)
+    return render_template('meeting.html', client=client, reunion=reunion, products=products)
 
 @app.route('/clients/reunion/finish', methods=['POST'])
 def finish_reunion():
-    client_id, feedbacks = request.json['client_id'], request.json['feedbacks']
+    client_id, reunion_id, feedbacks = request.json['client_id'], request.json['feedbacks']
     client = Client.objects.get(contact_id=client_id)
+    reunion = Reunion.objects.get(id=reunion_id)
     for p_id, f in feedbacks.iteritems():
         product = Product.objects.get(product_id=p_id)
         if f['positive']:
@@ -68,14 +71,11 @@ def finish_reunion():
 
         print feedback.positive, feedback.client.name
         # feedback.save()
+        # reunion.feedbacks.append(feedback)
+
+    # reunion.save()
     return 'ok'
 
-@app.route('/clients/reunion/<reunion_id>')
-def reunion_detail(reunion_id):
-    return render_template('reunion.html', reunion=Reunion.objects.get(id=reunion_id))
-
-#@app.route('/api/icon/<family_name>')
-#def family_icon(family_name):
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=8888,
