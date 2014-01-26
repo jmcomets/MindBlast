@@ -2,9 +2,9 @@ from database.models import Client, Product, Feedback
 from collections import Counter
 
 def get_client_similarities(client):
-    a1 = client.boolean_attributes
+    a1 = client.boolean_attributes.itervalues()
     for other_client in Client.objects(contact_id__ne=client.contact_id):
-        a2 = other_client.boolean_attributes
+        a2 = other_client.boolean_attributes.itervalues()
         yield other_client, map(lambda x: x[0] == x[1], zip(a1, a2)).count(True)
 
 def get_client_estimated_score(client, product):
@@ -33,5 +33,18 @@ def get_suggested_products_ahmed(client):
     for c in clients:
         sim = len([att for att, val in c.boolean_attributes.items() \
                 if client.boolean_attributes[att] == val])
-        scores += Counter({ p.Id : sim for p in Feedback.objects(positive=True, client=c) })
+        for f in Feedback.objects(positive=True, client=c):
+            scores[f.product.product_id] += sim
     return scores
+
+if __name__ == '__main__':
+    import database
+    database.connect()
+
+    client = Client.objects().first()
+
+    scores = get_suggested_products_ahmed(client)
+    products = sorted((score, Product.objects(product_id=p_id).first()) for p_id, score in scores.iteritems())
+
+    for score, p in products:
+        print p.name
