@@ -69,16 +69,17 @@ def finish_reunion():
     print "DONE"
 
     for p_id, f in feedbacks.iteritems():
+        print p_id
         product = Product.objects.get(product_id=p_id)
         if f['positive']:
             feedback = Feedback(client=client, product=product, positive=True)
         else:
             feedback = Feedback(client=client, product=product, positive=False, reason=f['reason'])
 
-        feedback.save()
-        reunion.feedbacks.append(feedback)
+        #feedback.save()
+        #reunion.feedbacks.append(feedback)
 
-    reunion.save()
+    #reunion.save()
     return 'ok'
 
 if __name__ == '__main__':

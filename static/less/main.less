@@ -195,7 +195,6 @@ h4 {
 
 
 .recommendations.risqued li {
-  width: 30%;
 
   .danger-refus {
     color: #e74c3c;
@@ -214,7 +213,7 @@ h4 {
   list-style: none;
   padding: 0;
 
-  li {
+  & > li, & > a > li {
     padding: 10px 10px;
     border: 1px solid #E5E5E5;
 
@@ -280,6 +279,15 @@ h4 {
       font-size: 12px;
     }
 
+  }
+
+  .feedbacks {
+    list-style: none;
+
+    & li {
+      font-size: 15px;
+
+    }
   }
 
 }

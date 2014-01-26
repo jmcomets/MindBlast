@@ -2,6 +2,7 @@
 
 {% block style %}
 <link href="/static/less/main.less" rel="stylesheet/less">
+<link href="/static/less/reunion.less" rel="stylesheet/less">
 {% endblock %}
 
 {% block body %}
@@ -158,6 +159,29 @@
       Le <span class="date">{{ meeting.date.strftime('%d %B %Y') }}</span>, à
       <span class="heure">{{ meeting.date.strftime('%Hh%M') }}</span><br>
       <span class="adresse">{{ client.mailing_street }}, {{ client.mailing_city }}</span>
+
+      <ul class="feedbacks">
+        {% for feedback in meeting.feedbacks %}
+
+          {% set product = feedback.product %}
+          <li class="feedback {% if feedback.positive %}feedback-positive{% else %}feedback-negative{% endif %} row">
+              {% if feedback.positive %}
+              <i class="fa fa-thumbs-up"></i>
+              {% else %}
+              <i class="fa fa-thumbs-down"></i>
+              {% endif %}
+
+              {{ product.name }}
+
+              <strong>
+                {% if feedback.reason %}
+                {{ feedback.reason }}
+                {% endif %}
+              </strong>
+
+          </li>
+        {% endfor %}
+      </ul>
     </li>
     {% endfor %}
     <style type="text/css" media="screen">
